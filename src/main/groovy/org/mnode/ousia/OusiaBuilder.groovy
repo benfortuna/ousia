@@ -1,3 +1,5 @@
+package org.mnode.ousia
+
 import java.awt.Insets;
 
 import javax.swing.UIManager;
