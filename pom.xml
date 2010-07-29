@@ -39,6 +39,21 @@
 			<version>6.0</version>
 		</dependency>
 		<dependency>
+			<groupId>org.apache.xmlgraphics</groupId>
+			<artifactId>batik-awt-util</artifactId>
+			<version>1.7</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.xmlgraphics</groupId>
+			<artifactId>batik-swing</artifactId>
+			<version>1.7</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.xmlgraphics</groupId>
+			<artifactId>batik-transcoder</artifactId>
+			<version>1.7</version>
+		</dependency>
+		<dependency>
 			<groupId>org.swinglabs</groupId>
 			<artifactId>jxlayer</artifactId>
 			<version>3.0.4</version>
