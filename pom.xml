@@ -6,6 +6,12 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Ousia</name>
 	<description>Groovy bindings for Substance and other Swing technologies</description>
+	<inceptionYear>2010</inceptionYear>
+	<scm>
+		<connection>scm:hg:https://ousia.googlecode.com/hg/</connection>
+		<developerConnection>scm:hg:https://ousia.googlecode.com/hg/</developerConnection>
+	</scm>
+	
 	<dependencies>
 		<dependency>
 	        <groupId>org.codehaus.groovy</groupId>
