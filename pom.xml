@@ -1,0 +1,52 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.mnode.ousia</groupId>
+	<artifactId>ousia</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>Ousia</name>
+	<description>Groovy bindings for Substance and other Swing technologies</description>
+	<dependencies>
+		<dependency>
+	        <groupId>org.codehaus.groovy</groupId>
+	        <artifactId>groovy-all</artifactId>
+	        <version>1.7.4</version>
+	        <exclusions>
+	        	<exclusion>
+	        		<groupId>org.apache.ant</groupId>
+	        		<artifactId>ant</artifactId>
+	        	</exclusion>
+	        </exclusions>
+    	</dependency>
+		<dependency>
+			<groupId>net.java.dev.substance</groupId>
+			<artifactId>substance</artifactId>
+			<version>6.0</version>
+		</dependency>
+		<dependency>
+			<groupId>net.java.dev.substance</groupId>
+			<artifactId>substance-swingx</artifactId>
+			<version>6.0</version>
+		</dependency>
+		<dependency>
+			<groupId>net.java.dev.substance</groupId>
+			<artifactId>swingx</artifactId>
+			<version>6.0</version>
+		</dependency>
+		<dependency>
+			<groupId>net.java.dev.substance</groupId>
+			<artifactId>trident</artifactId>
+			<version>6.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.swinglabs</groupId>
+			<artifactId>jxlayer</artifactId>
+			<version>3.0.4</version>
+		</dependency>
+		<dependency>
+			<groupId>net.java.dev.datatips</groupId>
+			<artifactId>datatips</artifactId>
+			<version>20091219</version>
+		</dependency>
+	</dependencies>
+</project>
