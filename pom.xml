@@ -17,17 +17,6 @@
 		<developerConnection>scm:hg:https://ousia.googlecode.com/hg/</developerConnection>
 	</scm>
 
-	<repositories>
-		<repository>
-			<id>modularity-releases</id>
-			<name>Modularity Releases</name>
-			<url>http://m2.modularity.net.au/releases</url>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</repository>
-	</repositories>
-
 	<dependencies>
 		<dependency>
 			<groupId>org.codehaus.groovy</groupId>
