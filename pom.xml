@@ -16,6 +16,27 @@
 		<connection>scm:hg:https://ousia.googlecode.com/hg/</connection>
 		<developerConnection>scm:hg:https://ousia.googlecode.com/hg/</developerConnection>
 	</scm>
+	
+	<repositories>
+		<repository>
+	        <id>micronode-snapshots</id>
+	        <url>http://build.mnode.org/snapshots</url>
+	        <releases>
+	           <enabled>false</enabled>
+	        </releases>
+	        <snapshots>
+	          <enabled>true</enabled>
+	        </snapshots>        
+	     </repository>
+		<repository>
+			<id>modularity-releases</id>
+			<name>Modularity Maven Repository</name>
+			<url>http://m2.modularity.net.au/releases</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
 
 	<dependencies>
 		<dependency>
