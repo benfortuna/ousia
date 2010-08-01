@@ -35,8 +35,13 @@ import java.awt.Insets;
 
 import javax.swing.UIManager;
 
+import org.fife.ui.rsyntaxtextarea.RSyntaxTextArea;
+import org.fife.ui.rtextarea.RTextScrollPane;
+
 import groovy.swing.LookAndFeelHelper;
 import groovy.swing.SwingBuilder
+import groovy.swing.factory.ScrollPaneFactory;
+import groovy.swing.factory.TextArgWidgetFactory;
 
 class OusiaBuilder extends SwingBuilder {
 
@@ -70,5 +75,14 @@ class OusiaBuilder extends SwingBuilder {
         LookAndFeelHelper.instance.addLookAndFeelAlias('substance-raven', 'org.pushingpixels.substance.api.skin.SubstanceRavenLookAndFeel')
         LookAndFeelHelper.instance.addLookAndFeelAlias('substance-sahara', 'org.pushingpixels.substance.api.skin.SubstanceSaharaLookAndFeel')
         LookAndFeelHelper.instance.addLookAndFeelAlias('substance-twilight', 'org.pushingpixels.substance.api.skin.SubstanceTwilightLookAndFeel')
-    }    
+    }
+    
+    public OusiaBuilder(boolean init = true) {
+        super(init)
+    }
+
+    def registerRSyntaxComponents() {
+        registerFactory("syntaxTextArea", new TextArgWidgetFactory(RSyntaxTextArea))
+        registerFactory("syntaxScrollPane", new ScrollPaneFactory(RTextScrollPane))
+    }
 }
