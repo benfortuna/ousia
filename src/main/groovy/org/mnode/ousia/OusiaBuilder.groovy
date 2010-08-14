@@ -36,6 +36,8 @@ import java.awt.Insets;
 import javax.swing.UIManager;
 
 import org.fife.ui.rsyntaxtextarea.RSyntaxTextArea;
+import org.fife.ui.rsyntaxtextarea.TextEditorPane;
+import org.fife.ui.rtextarea.RTextArea;
 import org.fife.ui.rtextarea.RTextScrollPane;
 
 import groovy.swing.LookAndFeelHelper;
@@ -82,7 +84,9 @@ class OusiaBuilder extends SwingBuilder {
     }
 
     def registerRSyntaxComponents() {
-        registerFactory("syntaxTextArea", new TextArgWidgetFactory(RSyntaxTextArea))
-        registerFactory("syntaxScrollPane", new ScrollPaneFactory(RTextScrollPane))
+        registerFactory("rTextArea", new TextArgWidgetFactory(RTextArea))
+        registerFactory("rSyntaxTextArea", new TextArgWidgetFactory(RSyntaxTextArea))
+        registerFactory("textEditorPane", new TextArgWidgetFactory(TextEditorPane))
+        registerFactory("rSyntaxScrollPane", new ScrollPaneFactory(RTextScrollPane))
     }
 }
