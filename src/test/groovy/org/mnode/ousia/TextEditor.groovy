@@ -1,8 +1,12 @@
 package org.mnode.ousia
 
+import java.awt.event.KeyEvent;
+
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import org.fife.ui.rsyntaxtextarea.FileLocation;
+import org.fife.ui.rsyntaxtextarea.RSyntaxTextAreaEditorKit.DecreaseFontSizeAction;
+import org.fife.ui.rsyntaxtextarea.RSyntaxTextAreaEditorKit.IncreaseFontSizeAction;
 
 import eu.medsea.mimeutil.MimeUtil;
 
@@ -20,6 +24,7 @@ class TextEditor {
                              doLater {
                                 editor.load(FileLocation.create(chooser.selectedFile), null)
                                 editor.syntaxEditingStyle = MimeUtil.getMimeTypes(chooser.selectedFile).iterator().next()
+                                editor.caretPosition = 0
                                 frame.title = "${editor.fileFullPath} - Text Editor"
                              }
                          }
@@ -28,6 +33,10 @@ class TextEditor {
                 action(id: 'exitAction', name: 'Exit', accelerator: shortcut('Q'), closure: {
                         System.exit(0)
                     })
+                
+                action(new IncreaseFontSizeAction(), id: 'increaseFontAction', name: 'Increase Font Size', accelerator: shortcut(KeyEvent.VK_EQUALS))
+                action(new DecreaseFontSizeAction(), id: 'decreaseFontAction', name: 'Decrease Font Size', accelerator: shortcut(KeyEvent.VK_MINUS))
+
             }
             
             fileChooser(id: 'chooser')
@@ -38,6 +47,10 @@ class TextEditor {
                         menuItem(openFileAction)
                         separator()
                         menuItem(exitAction)
+                    }
+                    menu(text: "View", mnemonic: 'V') {
+                        menuItem(increaseFontAction)
+                        menuItem(decreaseFontAction)
                     }
                 }
                 
