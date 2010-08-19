@@ -16,7 +16,7 @@ class TextEditor {
         MimeUtil.registerMimeDetector("eu.medsea.mimeutil.detector.ExtensionMimeDetector")
         
         new OusiaBuilder().edt {
-            lookAndFeel('substance-nebula')
+            lookAndFeel('substance-mariner')
             
             actions {
                 action(id: 'openFileAction', name: 'Open', accelerator: shortcut('O'), closure: {

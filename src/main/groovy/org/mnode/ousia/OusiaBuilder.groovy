@@ -67,6 +67,7 @@ class OusiaBuilder extends SwingBuilder {
         LookAndFeelHelper.instance.addLookAndFeelAlias('substance-graphite-aqua', 'org.pushingpixels.substance.api.skin.SubstanceGraphiteAquaLookAndFeel')
         LookAndFeelHelper.instance.addLookAndFeelAlias('substance-graphite-glass', 'org.pushingpixels.substance.api.skin.SubstanceGraphiteGlassLookAndFeel')
         LookAndFeelHelper.instance.addLookAndFeelAlias('substance-magellan', 'org.pushingpixels.substance.api.skin.SubstanceMagellanLookAndFeel')
+        LookAndFeelHelper.instance.addLookAndFeelAlias('substance-mariner', 'org.pushingpixels.substance.api.skin.SubstanceMarinerLookAndFeel')
         LookAndFeelHelper.instance.addLookAndFeelAlias('substance-mist-aqua', 'org.pushingpixels.substance.api.skin.SubstanceMistAquaLookAndFeel')
         LookAndFeelHelper.instance.addLookAndFeelAlias('substance-mist-silver', 'org.pushingpixels.substance.api.skin.SubstanceMistSilverLookAndFeel')
         LookAndFeelHelper.instance.addLookAndFeelAlias('substance-moderate', 'org.pushingpixels.substance.api.skin.SubstanceModerateLookAndFeel')
