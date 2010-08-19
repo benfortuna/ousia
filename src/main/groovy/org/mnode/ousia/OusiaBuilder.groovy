@@ -90,4 +90,8 @@ class OusiaBuilder extends SwingBuilder {
         registerFactory("textEditorPane", new TextArgWidgetFactory(TextEditorPane))
         registerFactory("rSyntaxScrollPane", new ScrollPaneFactory(RTextScrollPane))
     }
+	
+	def registerFlamingoComponents() {
+		registerFactory 'resizableIcon', new ResizableIconFactory()
+	}
 }
