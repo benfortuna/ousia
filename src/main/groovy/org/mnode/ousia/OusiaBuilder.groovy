@@ -39,6 +39,7 @@ import org.fife.ui.rsyntaxtextarea.RSyntaxTextArea;
 import org.fife.ui.rsyntaxtextarea.TextEditorPane;
 import org.fife.ui.rtextarea.RTextArea;
 import org.fife.ui.rtextarea.RTextScrollPane;
+import org.pushingpixels.flamingo.api.bcb.core.BreadcrumbFileSelector;
 
 import groovy.swing.LookAndFeelHelper;
 import groovy.swing.SwingBuilder
@@ -93,5 +94,6 @@ class OusiaBuilder extends SwingBuilder {
 	
 	def registerFlamingoComponents() {
 		registerFactory 'resizableIcon', new ResizableIconFactory()
+		registerBeanFactory 'breadcrumbFileSelector', BreadcrumbFileSelector
 	}
 }
