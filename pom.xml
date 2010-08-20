@@ -125,13 +125,6 @@
 			<type>jar</type>
 			<scope>compile</scope>
 		</dependency>
-		<dependency>
-			<groupId>org.divxdede</groupId>
-			<artifactId>commons</artifactId>
-			<version>0.1</version>
-			<type>jar</type>
-			<scope>compile</scope>
-		</dependency>
 	</dependencies>
 
 	<build>
