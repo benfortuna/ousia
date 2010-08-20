@@ -39,6 +39,7 @@ import org.fife.ui.rsyntaxtextarea.RSyntaxTextArea;
 import org.fife.ui.rsyntaxtextarea.TextEditorPane;
 import org.fife.ui.rtextarea.RTextArea;
 import org.fife.ui.rtextarea.RTextScrollPane;
+import org.jdesktop.swingx.JXStatusBar;
 import org.pushingpixels.flamingo.api.bcb.core.BreadcrumbFileSelector;
 
 import groovy.swing.LookAndFeelHelper;
@@ -79,6 +80,8 @@ class OusiaBuilder extends SwingBuilder {
         LookAndFeelHelper.instance.addLookAndFeelAlias('substance-raven', 'org.pushingpixels.substance.api.skin.SubstanceRavenLookAndFeel')
         LookAndFeelHelper.instance.addLookAndFeelAlias('substance-sahara', 'org.pushingpixels.substance.api.skin.SubstanceSaharaLookAndFeel')
         LookAndFeelHelper.instance.addLookAndFeelAlias('substance-twilight', 'org.pushingpixels.substance.api.skin.SubstanceTwilightLookAndFeel')
+
+        LookAndFeelHelper.instance.addLookAndFeelAlias('seaglass', 'com.seaglasslookandfeel.SeaGlassLookAndFeel')
     }
     
     public OusiaBuilder(boolean init = true) {
@@ -95,5 +98,9 @@ class OusiaBuilder extends SwingBuilder {
 	def registerFlamingoComponents() {
 		registerFactory 'resizableIcon', new ResizableIconFactory()
 		registerBeanFactory 'breadcrumbFileSelector', BreadcrumbFileSelector
+	}
+	
+	def registerSwingXComponents() {
+		registerBeanFactory 'statusBar', JXStatusBar
 	}
 }
