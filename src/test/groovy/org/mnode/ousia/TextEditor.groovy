@@ -31,6 +31,9 @@
  */
 package org.mnode.ousia
 
+import static org.jdesktop.swingx.JXStatusBar.Constraint.ResizeBehavior.*
+
+import java.awt.BorderLayout;
 import java.awt.event.KeyEvent;
 
 import javax.swing.JFileChooser;
@@ -38,6 +41,7 @@ import javax.swing.JFrame;
 import org.fife.ui.rsyntaxtextarea.FileLocation;
 import org.fife.ui.rsyntaxtextarea.RSyntaxTextAreaEditorKit.DecreaseFontSizeAction;
 import org.fife.ui.rsyntaxtextarea.RSyntaxTextAreaEditorKit.IncreaseFontSizeAction;
+import org.jdesktop.swingx.JXStatusBar;
 
 import eu.medsea.mimeutil.MimeUtil;
 
@@ -52,6 +56,7 @@ new OusiaBuilder().edt {
                      doLater {
                         editor.load(FileLocation.create(chooser.selectedFile), null)
                         editor.syntaxEditingStyle = MimeUtil.getMimeTypes(chooser.selectedFile).iterator().next()
+						syntaxStatus.text = editor.syntaxEditingStyle
                         editor.caretPosition = 0
                         frame.title = "${editor.fileFullPath} - Text Editor"
                      }
@@ -89,5 +94,10 @@ new OusiaBuilder().edt {
                 editor.addHyperlinkListener(new HyperlinkBrowser())
             }
         }
+		
+		statusBar(constraints: BorderLayout.SOUTH) {
+			label(text: 'Ready', constraints: new JXStatusBar.Constraint(FILL))
+			label(text: 'text/plain', id: 'syntaxStatus')
+		}
     }
 }
