@@ -34,6 +34,7 @@ package org.mnode.ousia
 import java.awt.Insets;
 
 import javax.swing.UIManager;
+import javax.swing.text.html.StyleSheet;
 
 import org.fife.ui.rsyntaxtextarea.RSyntaxTextArea;
 import org.fife.ui.rsyntaxtextarea.TextEditorPane;
@@ -88,6 +89,12 @@ class OusiaBuilder extends SwingBuilder {
         super(init)
     }
 
+	def registerEditorKit() {
+		registerFactory 'htmlEditorKit', new HTMLEditorKitFactory()
+		registerBeanFactory 'styleSheet', StyleSheet
+		registerFactory 'styleSheetRule', new StyleSheetRuleFactory()
+	}
+	
     def registerRSyntaxComponents() {
         registerFactory("rTextArea", new TextArgWidgetFactory(RTextArea))
         registerFactory("rSyntaxTextArea", new TextArgWidgetFactory(RSyntaxTextArea))
