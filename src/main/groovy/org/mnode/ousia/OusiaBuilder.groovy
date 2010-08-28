@@ -36,6 +36,8 @@ import java.awt.Insets;
 import javax.swing.UIManager;
 import javax.swing.text.html.StyleSheet;
 
+import net.miginfocom.swing.MigLayout;
+
 import org.fife.ui.rsyntaxtextarea.RSyntaxTextArea;
 import org.fife.ui.rsyntaxtextarea.TextEditorPane;
 import org.fife.ui.rtextarea.RTextArea;
@@ -45,6 +47,7 @@ import org.pushingpixels.flamingo.api.bcb.core.BreadcrumbFileSelector;
 
 import groovy.swing.LookAndFeelHelper;
 import groovy.swing.SwingBuilder
+import groovy.swing.factory.LayoutFactory;
 import groovy.swing.factory.ScrollPaneFactory;
 import groovy.swing.factory.TextArgWidgetFactory;
 
@@ -93,6 +96,10 @@ class OusiaBuilder extends SwingBuilder {
 		registerFactory 'htmlEditorKit', new HTMLEditorKitFactory()
 		registerBeanFactory 'styleSheet', StyleSheet
 		registerFactory 'styleSheetRule', new StyleSheetRuleFactory()
+	}
+	
+	def registerLayouts() {
+		registerFactory("migLayout", new LayoutFactory(MigLayout))
 	}
 	
     def registerRSyntaxComponents() {
