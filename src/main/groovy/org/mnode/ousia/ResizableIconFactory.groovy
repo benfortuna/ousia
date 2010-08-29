@@ -59,6 +59,9 @@ class ResizableIconFactory extends AbstractFactory {
 		if (FactoryBuilderSupport.checkValueIsTypeNotString(value, name, URL)) {
 			url = value
 		}
+		else {
+			url = ResizableIconFactory.getResource(value)
+		}
 		Dimension size = attributes.remove('size')
 		return SvgBatikResizableIcon.getSvgIcon(url, size);
 	}
