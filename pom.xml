@@ -79,6 +79,12 @@
 			<groupId>org.apache.xmlgraphics</groupId>
 			<artifactId>batik-swing</artifactId>
 			<version>1.7</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>xalan</artifactId>
+					<groupId>xalan</groupId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.xmlgraphics</groupId>
@@ -130,6 +136,11 @@
 			<version>3.7.3.1</version>
 			<type>jar</type>
 			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>net.java.dev.glazedlists</groupId>
+			<artifactId>glazedlists_java15</artifactId>
+			<version>1.8.0</version>
 		</dependency>
 	</dependencies>
 
