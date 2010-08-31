@@ -38,7 +38,7 @@ new OusiaBuilder().edt {
 	   migLayout(layoutConstraints: 'fill')
 	   
 	   label(text: resourceString('label1'), constraints: 'wrap')
-	   button(text: resourceString('button1', 'messages', Locale.FRANCE), constraints: 'wrap')
+	   button(text: rs('button1', 'messages', Locale.FRANCE), constraints: 'wrap')
 	   label(text: resourceString('label2'))
 	   textField(columns: 15, constraints: 'wrap')
    }
