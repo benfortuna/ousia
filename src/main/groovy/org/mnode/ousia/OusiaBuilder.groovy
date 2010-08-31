@@ -161,4 +161,8 @@ class OusiaBuilder extends SwingBuilder {
 		}
 		return key
 	}
+	
+	String rs(String key, String bundleName = 'messages', Locale locale = Locale.default) {
+		return resourceString(key, bundleName, locale)
+	}
 }
