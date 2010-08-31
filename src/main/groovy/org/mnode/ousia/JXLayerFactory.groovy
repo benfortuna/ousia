@@ -61,8 +61,7 @@ class JXLayerFactory extends AbstractFactory {
 			IllegalAccessException {
 
 		FactoryBuilderSupport.checkValueIsType(value, name, LayerUI)
-		JXLayer layer = new JXLayer<JComponent>()
-		layer.ui = value
+		JXLayer layer = new JXLayer<JComponent>(null, value)
 		return layer
 	}
 
