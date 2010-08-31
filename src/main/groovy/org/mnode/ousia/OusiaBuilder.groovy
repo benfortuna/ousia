@@ -44,6 +44,8 @@ import org.fife.ui.rtextarea.RTextArea;
 import org.fife.ui.rtextarea.RTextScrollPane;
 import org.jdesktop.swingx.JXStatusBar;
 import org.pushingpixels.flamingo.api.bcb.core.BreadcrumbFileSelector;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import groovy.swing.LookAndFeelHelper;
 import groovy.swing.SwingBuilder
@@ -53,6 +55,8 @@ import groovy.swing.factory.TextArgWidgetFactory;
 
 class OusiaBuilder extends SwingBuilder {
 
+	private static Logger log = LoggerFactory.getLogger(OusiaBuilder)
+	
     static {
         // remove padding from tabbed panes..
         UIManager.put("TabbedPane.contentBorderInsets", new Insets(0, 0, 0, 0))
@@ -93,28 +97,68 @@ class OusiaBuilder extends SwingBuilder {
     }
 
 	def registerEditorKit() {
-		registerFactory 'htmlEditorKit', new HTMLEditorKitFactory()
-		registerBeanFactory 'styleSheet', StyleSheet
-		registerFactory 'styleSheetRule', new StyleSheetRuleFactory()
+		try {
+			registerFactory 'htmlEditorKit', new HTMLEditorKitFactory()
+			registerBeanFactory 'styleSheet', StyleSheet
+			registerFactory 'styleSheetRule', new StyleSheetRuleFactory()
+		}
+		catch (Exception e) {
+			log.warn 'Failed to register editor kit'
+		}
 	}
 	
 	def registerLayouts() {
-		registerFactory("migLayout", new LayoutFactory(MigLayout))
+		try {
+			registerFactory("migLayout", new LayoutFactory(MigLayout))
+		}
+		catch (Exception e) {
+			log.warn 'Failed to register layouts'
+		}
 	}
 	
     def registerRSyntaxComponents() {
-        registerFactory("rTextArea", new TextArgWidgetFactory(RTextArea))
-        registerFactory("rSyntaxTextArea", new TextArgWidgetFactory(RSyntaxTextArea))
-        registerFactory("textEditorPane", new TextArgWidgetFactory(TextEditorPane))
-        registerFactory("rSyntaxScrollPane", new ScrollPaneFactory(RTextScrollPane))
+		try {
+	        registerFactory("rTextArea", new TextArgWidgetFactory(RTextArea))
+	        registerFactory("rSyntaxTextArea", new TextArgWidgetFactory(RSyntaxTextArea))
+	        registerFactory("textEditorPane", new TextArgWidgetFactory(TextEditorPane))
+	        registerFactory("rSyntaxScrollPane", new ScrollPaneFactory(RTextScrollPane))
+		}
+		catch (Exception e) {
+			log.warn 'Failed to register rsyntax components'
+		}
     }
 	
 	def registerFlamingoComponents() {
-		registerFactory 'resizableIcon', new ResizableIconFactory()
-		registerBeanFactory 'breadcrumbFileSelector', BreadcrumbFileSelector
+		try {
+			registerFactory 'resizableIcon', new ResizableIconFactory()
+			registerBeanFactory 'breadcrumbFileSelector', BreadcrumbFileSelector
+		}
+		catch (Exception e) {
+			log.warn 'Failed to register flamingo components'
+		}
 	}
 	
 	def registerSwingXComponents() {
-		registerBeanFactory 'statusBar', JXStatusBar
+		try {
+			registerBeanFactory 'statusBar', JXStatusBar
+		}
+		catch (Exception e) {
+			log.warn 'Failed to register swingx components'
+		}
+	}
+	
+	def registerJXLayerComponents() {
+		registerFactory 'layer', new JXLayerFactory()
+	}
+	
+	String resourceString(String key, String bundleName = 'messages', Locale locale = Locale.default) {
+		ResourceBundle rb = ResourceBundle.getBundle(bundleName, locale)
+		try {
+			return rb.getString(key)
+		}
+		catch (MissingResourceException e) {
+			log.warn "Resource for key: ${key} not found in bundle: ${bundleName}"
+		}
+		return key
 	}
 }
