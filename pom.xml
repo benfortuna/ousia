@@ -148,6 +148,11 @@
 			<artifactId>glazedlists_java15</artifactId>
 			<version>1.8.0</version>
 		</dependency>
+		<dependency>
+			<groupId>eu.kostia.gtkjfilechooser</groupId>
+			<artifactId>gtkjfilechooser</artifactId>
+			<version>1.4.8</version>
+		</dependency>
 	</dependencies>
 
 	<build>

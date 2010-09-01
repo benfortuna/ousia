@@ -151,6 +151,10 @@ class OusiaBuilder extends SwingBuilder {
 		registerFactory 'layer', new JXLayerFactory()
 	}
 	
+	def registerDefaultOverrides() {
+		registerFactory 'fileChooser', new JFileChooserFactory()
+	}
+	
 	String resourceString(String key, String bundleName = 'messages', Locale locale = Locale.default) {
 		ResourceBundle rb = ResourceBundle.getBundle(bundleName, locale)
 		try {
