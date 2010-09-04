@@ -153,6 +153,35 @@
 			<artifactId>gtkjfilechooser</artifactId>
 			<version>1.4.8</version>
 		</dependency>
+		<dependency>
+			<groupId>net.sourceforge.mydoggy</groupId>
+			<artifactId>mydoggy-api</artifactId>
+			<version>1.4.2</version>
+		</dependency>
+		<dependency>
+			<groupId>net.sourceforge.mydoggy</groupId>
+			<artifactId>mydoggy-plaf</artifactId>
+			<version>1.4.2</version>
+			<type>jar</type>
+			<scope>compile</scope>
+			<exclusions>
+				<exclusion>
+					<artifactId>mydoggy-api</artifactId>
+					<groupId>org.noos.xing</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>mydoggy-res</artifactId>
+					<groupId>org.noos.xing</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>net.sourceforge.mydoggy</groupId>
+			<artifactId>mydoggy-res</artifactId>
+			<version>1.4.2</version>
+			<type>jar</type>
+			<scope>compile</scope>
+		</dependency>
 	</dependencies>
 
 	<build>

@@ -43,6 +43,7 @@ import org.fife.ui.rsyntaxtextarea.TextEditorPane;
 import org.fife.ui.rtextarea.RTextArea;
 import org.fife.ui.rtextarea.RTextScrollPane;
 import org.jdesktop.swingx.JXStatusBar;
+import org.noos.xing.mydoggy.plaf.MyDoggyToolWindowManager;
 import org.pushingpixels.flamingo.api.bcb.core.BreadcrumbFileSelector;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -153,6 +154,11 @@ class OusiaBuilder extends SwingBuilder {
 	
 	def registerDefaultOverrides() {
 		registerFactory 'fileChooser', new JFileChooserFactory()
+	}
+	
+	def registerWindowManagerComponents() {
+		registerBeanFactory 'toolWindowManager', MyDoggyToolWindowManager
+//		registerFactory 'toolWindow', new ToolWindowFactory()
 	}
 	
 	String resourceString(String key, String bundleName = 'messages', Locale locale = Locale.default) {
