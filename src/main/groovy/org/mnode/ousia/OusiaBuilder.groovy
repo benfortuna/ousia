@@ -97,11 +97,12 @@ class OusiaBuilder extends SwingBuilder {
         super(init)
     }
 
-	def registerEditorKit() {
+	def registerOusiaExtras() {
 		try {
 			registerFactory 'htmlEditorKit', new HTMLEditorKitFactory()
 			registerBeanFactory 'styleSheet', StyleSheet
 			registerFactory 'styleSheetRule', new StyleSheetRuleFactory()
+			registerFactory 'paddedIcon', new PaddedIconFactory()
 		}
 		catch (Exception e) {
 			log.warn 'Failed to register editor kit'
