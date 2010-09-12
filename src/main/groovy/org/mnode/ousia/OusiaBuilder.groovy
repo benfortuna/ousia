@@ -104,8 +104,8 @@ class OusiaBuilder extends SwingBuilder {
 			registerFactory 'styleSheetRule', new StyleSheetRuleFactory()
 			registerFactory 'paddedIcon', new PaddedIconFactory()
 		}
-		catch (Exception e) {
-			log.warn 'Failed to register editor kit'
+		catch (Throwable e) {
+			log.warn 'Failed to register Ousia extras'
 		}
 	}
 	
@@ -113,7 +113,7 @@ class OusiaBuilder extends SwingBuilder {
 		try {
 			registerFactory("migLayout", new LayoutFactory(MigLayout))
 		}
-		catch (Exception e) {
+		catch (Throwable e) {
 			log.warn 'Failed to register layouts'
 		}
 	}
@@ -125,7 +125,7 @@ class OusiaBuilder extends SwingBuilder {
 	        registerFactory("textEditorPane", new TextArgWidgetFactory(TextEditorPane))
 	        registerFactory("rSyntaxScrollPane", new ScrollPaneFactory(RTextScrollPane))
 		}
-		catch (Exception e) {
+		catch (Throwable e) {
 			log.warn 'Failed to register rsyntax components'
 		}
     }
@@ -135,7 +135,7 @@ class OusiaBuilder extends SwingBuilder {
 			registerFactory 'resizableIcon', new ResizableIconFactory()
 			registerBeanFactory 'breadcrumbFileSelector', BreadcrumbFileSelector
 		}
-		catch (Exception e) {
+		catch (Throwable e) {
 			log.warn 'Failed to register flamingo components'
 		}
 	}
@@ -144,22 +144,37 @@ class OusiaBuilder extends SwingBuilder {
 		try {
 			registerBeanFactory 'statusBar', JXStatusBar
 		}
-		catch (Exception e) {
+		catch (Throwable e) {
 			log.warn 'Failed to register swingx components'
 		}
 	}
 	
 	def registerJXLayerComponents() {
-		registerFactory 'layer', new JXLayerFactory()
+		try {
+			registerFactory 'layer', new JXLayerFactory()
+		}
+		catch (Throwable e) {
+			log.warn 'Failed to register jxlayer components'
+		}
 	}
 	
 	def registerDefaultOverrides() {
-		registerFactory 'fileChooser', new JFileChooserFactory()
+		try {
+			registerFactory 'fileChooser', new JFileChooserFactory()
+		}
+		catch (Throwable e) {
+			log.warn 'Failed to register default overrides'
+		}
 	}
 	
 	def registerWindowManagerComponents() {
-		registerBeanFactory 'toolWindowManager', MyDoggyToolWindowManager
-//		registerFactory 'toolWindow', new ToolWindowFactory()
+		try {
+			registerBeanFactory 'toolWindowManager', MyDoggyToolWindowManager
+//			registerFactory 'toolWindow', new ToolWindowFactory()
+		}
+		catch (Throwable e) {
+			log.warn 'Failed to register window manager components'
+		}
 	}
 	
 	String resourceString(String key, String bundleName = 'messages', Locale locale = Locale.default) {
