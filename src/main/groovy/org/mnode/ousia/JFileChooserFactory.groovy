@@ -58,7 +58,14 @@ class JFileChooserFactory extends AbstractFactory {
 		println UIManager.lookAndFeel.name
 		
 		if (UIManager.lookAndFeel.name == "GTK look and feel") {
-			UIManager.put("FileChooserUI", "eu.kostia.gtkjfilechooser.ui.GtkFileChooserUI");
+			try {
+				// ensure class is available..
+				Class.forName('eu.kostia.gtkjfilechooser.ui.GtkFileChooserUI')
+				UIManager.put("FileChooserUI", "eu.kostia.gtkjfilechooser.ui.GtkFileChooserUI");
+			}
+			catch (Throwable e) {
+				// use default UI
+			}
 		}
 		return new JFileChooser();
 	}
