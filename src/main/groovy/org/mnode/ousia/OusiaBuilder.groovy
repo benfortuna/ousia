@@ -45,6 +45,8 @@ import org.fife.ui.rtextarea.RTextScrollPane;
 import org.jdesktop.swingx.JXStatusBar;
 import org.noos.xing.mydoggy.plaf.MyDoggyToolWindowManager;
 import org.pushingpixels.flamingo.api.bcb.core.BreadcrumbFileSelector;
+import org.pushingpixels.flamingo.api.common.JCommandButton;
+import org.pushingpixels.flamingo.api.common.JCommandToggleButton;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -134,6 +136,9 @@ class OusiaBuilder extends SwingBuilder {
 		try {
 			registerFactory 'resizableIcon', new ResizableIconFactory()
 			registerBeanFactory 'breadcrumbFileSelector', BreadcrumbFileSelector
+			registerFactory 'commandButtonStrip', new JCommandButtonStripFactory()
+			registerFactory 'commandButton', new CommandButtonFactory(JCommandButton)
+			registerFactory 'commandToggleButton', new CommandButtonFactory(JCommandToggleButton)
 		}
 		catch (Throwable e) {
 			log.warn 'Failed to register flamingo components'
