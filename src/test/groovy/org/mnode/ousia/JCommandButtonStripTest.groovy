@@ -31,8 +31,6 @@
 */
 package org.mnode.ousia
 
-import java.awt.Dimension;
-
 import javax.swing.JFrame;
 
 import org.pushingpixels.flamingo.api.common.CommandButtonDisplayState;
@@ -43,10 +41,12 @@ new OusiaBuilder().edt {
    frame(title: 'JCommandButtonStrip Test', size: [320, 240], show: true, defaultCloseOperation: JFrame.EXIT_ON_CLOSE) {
 	   flowLayout()
 	   
+	   resizableIcon('/find.svg', size: [32, 32], id: 'findIcon')
+	   
 	   commandButtonStrip(displayState: CommandButtonDisplayState.FIT_TO_ICON) {
 		   commandButton('Button 1')
 		   commandButton('Button 2')
-//		   commandButton resizableIcon('/find.svg', size: new Dimension(32, 32))
+		   commandButton findIcon
 	   }
    }
 }

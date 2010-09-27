@@ -31,8 +31,6 @@
  */
 package org.mnode.ousia
 
-import java.awt.Dimension;
-
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
@@ -40,9 +38,9 @@ import javax.swing.JLabel;
 new OusiaBuilder().edt {
 	frame(title: 'ResizableIcon Test', size: [320, 240], show: true, defaultCloseOperation: JFrame.EXIT_ON_CLOSE) {
 		flowLayout()
-		resizableIcon(ResizableIconTest.getResource('/find.svg'), size: new Dimension(48, 48), id: 'findIcon')
+		resizableIcon(ResizableIconTest.getResource('/find.svg'), size: [48, 48], id: 'findIcon')
 		
 		label(icon: findIcon, horizontalAlignment: JLabel.CENTER)
-		label(icon: resizableIcon('/find.svg', size: new Dimension(32, 32)), horizontalAlignment: JLabel.RIGHT)
+		label(icon: resizableIcon('/find.svg', size: [32, 32]), horizontalAlignment: JLabel.RIGHT)
 	}
 }
