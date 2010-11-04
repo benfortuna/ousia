@@ -139,6 +139,7 @@ class OusiaBuilder extends SwingBuilder {
 			registerFactory 'commandButtonStrip', new JCommandButtonStripFactory()
 			registerFactory 'commandButton', new CommandButtonFactory(JCommandButton)
 			registerFactory 'commandToggleButton', new CommandButtonFactory(JCommandToggleButton)
+			registerFactory 'ribbonFrame', new RibbonFrameFactory()
 		}
 		catch (Throwable e) {
 			log.warn 'Failed to register flamingo components'
