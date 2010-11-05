@@ -47,6 +47,7 @@ import org.noos.xing.mydoggy.plaf.MyDoggyToolWindowManager;
 import org.pushingpixels.flamingo.api.bcb.core.BreadcrumbFileSelector;
 import org.pushingpixels.flamingo.api.common.JCommandButton;
 import org.pushingpixels.flamingo.api.common.JCommandToggleButton;
+import org.pushingpixels.flamingo.api.ribbon.RibbonApplicationMenu;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -140,6 +141,7 @@ class OusiaBuilder extends SwingBuilder {
 			registerFactory 'commandButton', new CommandButtonFactory(JCommandButton)
 			registerFactory 'commandToggleButton', new CommandButtonFactory(JCommandToggleButton)
 			registerFactory 'ribbonFrame', new RibbonFrameFactory()
+//			registerFactory 'ribbonApplicationMenu', new RibbonApplicationMenuFactory()
 		}
 		catch (Throwable e) {
 			log.warn 'Failed to register flamingo components'
@@ -180,6 +182,15 @@ class OusiaBuilder extends SwingBuilder {
 		}
 		catch (Throwable e) {
 			log.warn 'Failed to register window manager components'
+		}
+	}
+	
+	def registerGlazedListsComponents() {
+		try {
+			registerFactory 'sortedList', new SortedListFactory()
+		}
+		catch (Throwable e) {
+			log.warn 'Failed to register glazed lists components'
 		}
 	}
 	
