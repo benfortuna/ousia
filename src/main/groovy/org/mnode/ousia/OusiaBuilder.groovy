@@ -188,6 +188,7 @@ class OusiaBuilder extends SwingBuilder {
 	def registerGlazedListsComponents() {
 		try {
 			registerFactory 'sortedList', new SortedListFactory()
+			registerFactory 'treeList', new TreeListFactory()
 		}
 		catch (Throwable e) {
 			log.warn 'Failed to register glazed lists components'
