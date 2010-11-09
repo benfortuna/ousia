@@ -43,6 +43,7 @@ import org.fife.ui.rsyntaxtextarea.TextEditorPane;
 import org.fife.ui.rtextarea.RTextArea;
 import org.fife.ui.rtextarea.RTextScrollPane;
 import org.jdesktop.swingx.JXStatusBar;
+import org.jdesktop.swingx.JXTable;
 import org.noos.xing.mydoggy.plaf.MyDoggyToolWindowManager;
 import org.pushingpixels.flamingo.api.bcb.core.BreadcrumbFileSelector;
 import org.pushingpixels.flamingo.api.common.JCommandButton;
@@ -136,12 +137,13 @@ class OusiaBuilder extends SwingBuilder {
 	def registerFlamingoComponents() {
 		try {
 			registerFactory 'resizableIcon', new ResizableIconFactory()
+			registerFactory 'breadcrumbBar', new BreadcrumbBarFactory()
 			registerBeanFactory 'breadcrumbFileSelector', BreadcrumbFileSelector
 			registerFactory 'commandButtonStrip', new JCommandButtonStripFactory()
 			registerFactory 'commandButton', new CommandButtonFactory(JCommandButton)
 			registerFactory 'commandToggleButton', new CommandButtonFactory(JCommandToggleButton)
 			registerFactory 'ribbonFrame', new RibbonFrameFactory()
-//			registerFactory 'ribbonApplicationMenu', new RibbonApplicationMenuFactory()
+			registerFactory 'ribbonApplicationMenu', new RibbonApplicationMenuFactory()
 		}
 		catch (Throwable e) {
 			log.warn 'Failed to register flamingo components'
@@ -151,6 +153,7 @@ class OusiaBuilder extends SwingBuilder {
 	def registerSwingXComponents() {
 		try {
 			registerBeanFactory 'statusBar', JXStatusBar
+//			registerBeanFactory 'table', JXTable
 		}
 		catch (Throwable e) {
 			log.warn 'Failed to register swingx components'
