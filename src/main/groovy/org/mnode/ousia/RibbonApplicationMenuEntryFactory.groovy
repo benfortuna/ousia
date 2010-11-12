@@ -45,7 +45,6 @@ import java.awt.event.ActionListener;
 import org.pushingpixels.flamingo.api.common.JCommandButton.CommandButtonKind;
 import org.pushingpixels.flamingo.api.common.icon.ResizableIcon;
 import org.pushingpixels.flamingo.api.ribbon.RibbonApplicationMenu;
-import org.pushingpixels.flamingo.api.ribbon.RibbonApplicationMenuEntry;
 import org.pushingpixels.flamingo.api.ribbon.RibbonApplicationMenuEntryFooter;
 import org.pushingpixels.flamingo.api.ribbon.RibbonApplicationMenuEntryPrimary;
 
