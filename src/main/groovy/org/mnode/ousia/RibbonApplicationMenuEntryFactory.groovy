@@ -56,9 +56,9 @@ import org.pushingpixels.flamingo.api.ribbon.RibbonApplicationMenuEntryPrimary;
  */
 class RibbonApplicationMenuEntryFactory extends AbstractFactory {
 
-	private final Constructor<? extends RibbonApplicationMenuEntry> withKindConstructor;
+	private final Constructor<?> withKindConstructor;
 	
-	private final Constructor<? extends RibbonApplicationMenuEntry> withoutKindConstructor;
+	private final Constructor<?> withoutKindConstructor;
 
 	private final Class<?> clazz;
 	
