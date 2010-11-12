@@ -49,6 +49,9 @@ import org.pushingpixels.flamingo.api.bcb.core.BreadcrumbFileSelector;
 import org.pushingpixels.flamingo.api.common.JCommandButton;
 import org.pushingpixels.flamingo.api.common.JCommandToggleButton;
 import org.pushingpixels.flamingo.api.ribbon.RibbonApplicationMenu;
+import org.pushingpixels.flamingo.api.ribbon.RibbonApplicationMenuEntryFooter;
+import org.pushingpixels.flamingo.api.ribbon.RibbonApplicationMenuEntryPrimary;
+import org.pushingpixels.flamingo.api.ribbon.RibbonApplicationMenuEntrySecondary;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -143,10 +146,16 @@ class OusiaBuilder extends SwingBuilder {
 			registerFactory 'commandButton', new CommandButtonFactory(JCommandButton)
 			registerFactory 'commandToggleButton', new CommandButtonFactory(JCommandToggleButton)
 			registerFactory 'ribbonFrame', new RibbonFrameFactory()
-			registerFactory 'ribbonApplicationMenu', new RibbonApplicationMenuFactory()
+			registerBeanFactory 'ribbonApplicationMenu', RibbonApplicationMenu
+			registerFactory 'ribbonApplicationMenuEntryPrimary', new RibbonApplicationMenuEntryFactory(RibbonApplicationMenuEntryPrimary)
+			registerFactory 'ribbonApplicationMenuEntrySecondary', new RibbonApplicationMenuEntryFactory(RibbonApplicationMenuEntrySecondary)
+			registerFactory 'ribbonApplicationMenuEntryFooter', new RibbonApplicationMenuEntryFactory(RibbonApplicationMenuEntryFooter)
 		}
 		catch (Throwable e) {
 			log.warn 'Failed to register flamingo components'
+			if (log.debugEnabled) {
+				log.debug 'Trace:', e
+			}
 		}
 	}
 	
