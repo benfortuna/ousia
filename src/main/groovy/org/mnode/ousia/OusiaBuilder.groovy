@@ -44,6 +44,7 @@ import org.fife.ui.rtextarea.RTextArea;
 import org.fife.ui.rtextarea.RTextScrollPane;
 import org.jdesktop.swingx.JXStatusBar;
 import org.jdesktop.swingx.JXTable;
+import org.jdesktop.swingx.JXTreeTable;
 import org.noos.xing.mydoggy.plaf.MyDoggyToolWindowManager;
 import org.pushingpixels.flamingo.api.bcb.core.BreadcrumbFileSelector;
 import org.pushingpixels.flamingo.api.common.JCommandButton;
@@ -163,6 +164,7 @@ class OusiaBuilder extends SwingBuilder {
 		try {
 			registerBeanFactory 'statusBar', JXStatusBar
 //			registerBeanFactory 'table', JXTable
+			registerBeanFactory 'treeTable', JXTreeTable
 		}
 		catch (Throwable e) {
 			log.warn 'Failed to register swingx components'
