@@ -31,6 +31,7 @@
  */
 package org.mnode.ousia
 
+import java.awt.event.ActionListener;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.logging.Level;
@@ -39,12 +40,16 @@ import java.util.logging.Logger;
 import javax.swing.Action;
 import javax.swing.Icon;
 
+import org.pushingpixels.flamingo.api.common.AbstractCommandButton;
 import org.pushingpixels.flamingo.api.common.icon.ResizableIcon;
 
 class CommandButtonFactory extends AbstractFactory {
 
+	@SuppressWarnings("rawtypes")
 	static final Class<?>[] ICON_ARGS = [ResizableIcon];
+	@SuppressWarnings("rawtypes")
 	static final Class<?>[] STRING_ARGS = [String];
+	@SuppressWarnings("rawtypes")
 	static final Class<?>[] STRING_ICON_ARGS = [String, ResizableIcon];
 	
 	final Constructor<?> iconCtor;
@@ -69,14 +74,15 @@ class CommandButtonFactory extends AbstractFactory {
 	public Object newInstance(FactoryBuilderSupport builder, Object name, Object value, Map attributes) throws InstantiationException,
 			IllegalAccessException {
 
+		AbstractCommandButton button
         try {
             if (value instanceof GString) value = value as String
             if (value instanceof ResizableIcon) {
-                return iconCtor.newInstance(value);
+                button = iconCtor.newInstance(value);
             } else if (value instanceof String) {
-                return stringCtor.newInstance(value);
+                button = stringCtor.newInstance(value);
             } else if (klass.isAssignableFrom(value.getClass())) {
-                return value;
+                button = value;
             } else {
                 throw new RuntimeException("$name can only have a value argument of type org.pushingpixels.flamingo.api.common.icon.ResizableIcon, java.lang.String, or $klass.name");
             }
@@ -85,6 +91,12 @@ class CommandButtonFactory extends AbstractFactory {
         } catch (InvocationTargetException e) {
             throw new RuntimeException("Failed to create component for '$name' reason: $e", e);
         }
+		
+		ActionListener actionPerformed = attributes.remove('actionPerformed')
+		if (button && actionPerformed) {
+			button.addActionListener actionPerformed
+		}
+		return button
 	}
 
 }

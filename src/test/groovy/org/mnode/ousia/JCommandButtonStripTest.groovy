@@ -31,6 +31,8 @@
 */
 package org.mnode.ousia
 
+import java.awt.event.ActionListener;
+
 import javax.swing.JFrame;
 
 import org.pushingpixels.flamingo.api.common.CommandButtonDisplayState;
@@ -45,7 +47,7 @@ new OusiaBuilder().edt {
 	   
 	   commandButtonStrip(displayState: CommandButtonDisplayState.FIT_TO_ICON) {
 		   commandButton('Button 1')
-		   commandButton('Button 2')
+		   commandButton('Button 2', actionPerformed: { println 'Button 2 pressed' } as ActionListener)
 		   commandButton findIcon
 	   }
    }
