@@ -31,6 +31,8 @@
  */
 package org.mnode.ousia
 
+import java.awt.Component;
+import java.awt.Cursor;
 import java.awt.Insets;
 
 import javax.swing.UIManager;
@@ -43,7 +45,6 @@ import org.fife.ui.rsyntaxtextarea.TextEditorPane;
 import org.fife.ui.rtextarea.RTextArea;
 import org.fife.ui.rtextarea.RTextScrollPane;
 import org.jdesktop.swingx.JXStatusBar;
-import org.jdesktop.swingx.JXTable;
 import org.jdesktop.swingx.JXTreeTable;
 import org.noos.xing.mydoggy.plaf.MyDoggyToolWindowManager;
 import org.pushingpixels.flamingo.api.bcb.core.BreadcrumbFileSelector;
@@ -222,5 +223,25 @@ class OusiaBuilder extends SwingBuilder {
 	
 	String rs(String key, String bundleName = 'messages', Locale locale = Locale.default) {
 		return resourceString(key, bundleName, locale)
+	}
+	
+	/**
+	 * Inspired by <a href="http://www.catalysoft.com/articles/busycursor.html">catalysoft.com</a>.
+	 * @param component the component to set the busy cursor on
+	 * @param closure the closure to call
+	 * @return
+	 */
+	def busyCursor(Component component, Closure closure) {
+		try {
+			edt {
+				component.cursor = Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR)
+			}
+			closure.call()
+		}
+		finally {
+			edt {
+				component.cursor = Cursor.defaultCursor
+			}
+		}
 	}
 }
