@@ -44,8 +44,11 @@ import org.fife.ui.rsyntaxtextarea.RSyntaxTextArea;
 import org.fife.ui.rsyntaxtextarea.TextEditorPane;
 import org.fife.ui.rtextarea.RTextArea;
 import org.fife.ui.rtextarea.RTextScrollPane;
+import org.jdesktop.swingx.JXFormattedTextField;
 import org.jdesktop.swingx.JXStatusBar;
 import org.jdesktop.swingx.JXTreeTable;
+import org.mnode.ousia.flamingo.RibbonComponentFactory;
+import org.mnode.ousia.glazedlists.FilterListFactory;
 import org.noos.xing.mydoggy.plaf.MyDoggyToolWindowManager;
 import org.pushingpixels.flamingo.api.bcb.core.BreadcrumbFileSelector;
 import org.pushingpixels.flamingo.api.common.JCommandButton;
@@ -112,6 +115,7 @@ class OusiaBuilder extends SwingBuilder {
 			registerBeanFactory 'styleSheet', StyleSheet
 			registerFactory 'styleSheetRule', new StyleSheetRuleFactory()
 			registerFactory 'paddedIcon', new PaddedIconFactory()
+			registerFactory 'textField', new TextArgWidgetFactory(JXFormattedTextField)
 		}
 		catch (Throwable e) {
 			log.warn 'Failed to register Ousia extras'
@@ -148,6 +152,7 @@ class OusiaBuilder extends SwingBuilder {
 			registerFactory 'commandButton', new CommandButtonFactory(JCommandButton)
 			registerFactory 'commandToggleButton', new CommandButtonFactory(JCommandToggleButton)
 			registerFactory 'ribbonFrame', new RibbonFrameFactory()
+			registerFactory 'ribbonComponent', new RibbonComponentFactory()
 			registerBeanFactory 'ribbonApplicationMenu', RibbonApplicationMenu
 			registerFactory 'ribbonApplicationMenuEntryPrimary', new RibbonApplicationMenuEntryFactory(RibbonApplicationMenuEntryPrimary)
 			registerFactory 'ribbonApplicationMenuEntrySecondary', new RibbonApplicationMenuEntryFactory(RibbonApplicationMenuEntrySecondary)
@@ -203,6 +208,7 @@ class OusiaBuilder extends SwingBuilder {
 	def registerGlazedListsComponents() {
 		try {
 			registerFactory 'sortedList', new SortedListFactory()
+			registerFactory 'filterList', new FilterListFactory()
 			registerFactory 'treeList', new TreeListFactory()
 		}
 		catch (Throwable e) {
