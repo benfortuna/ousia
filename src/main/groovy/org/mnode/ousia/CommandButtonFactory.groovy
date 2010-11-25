@@ -92,6 +92,11 @@ class CommandButtonFactory extends AbstractFactory {
             throw new RuntimeException("Failed to create component for '$name' reason: $e", e);
         }
 		
+		def selected = attributes.remove('selected')
+		if (button && selected) {
+			button.actionModel.selected = selected
+		}
+		
 		ActionListener actionPerformed = attributes.remove('actionPerformed')
 		if (button && actionPerformed) {
 			button.addActionListener actionPerformed
