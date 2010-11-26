@@ -47,12 +47,15 @@ import org.fife.ui.rtextarea.RTextScrollPane;
 import org.jdesktop.swingx.JXFormattedTextField;
 import org.jdesktop.swingx.JXStatusBar;
 import org.jdesktop.swingx.JXTreeTable;
+import org.mnode.ousia.flamingo.JCommandPopupMenuFactory;
 import org.mnode.ousia.flamingo.RibbonComponentFactory;
 import org.mnode.ousia.glazedlists.FilterListFactory;
 import org.noos.xing.mydoggy.plaf.MyDoggyToolWindowManager;
 import org.pushingpixels.flamingo.api.bcb.core.BreadcrumbFileSelector;
 import org.pushingpixels.flamingo.api.common.JCommandButton;
+import org.pushingpixels.flamingo.api.common.JCommandMenuButton;
 import org.pushingpixels.flamingo.api.common.JCommandToggleButton;
+import org.pushingpixels.flamingo.api.common.JCommandToggleMenuButton;
 import org.pushingpixels.flamingo.api.ribbon.RibbonApplicationMenu;
 import org.pushingpixels.flamingo.api.ribbon.RibbonApplicationMenuEntryFooter;
 import org.pushingpixels.flamingo.api.ribbon.RibbonApplicationMenuEntryPrimary;
@@ -115,7 +118,6 @@ class OusiaBuilder extends SwingBuilder {
 			registerBeanFactory 'styleSheet', StyleSheet
 			registerFactory 'styleSheetRule', new StyleSheetRuleFactory()
 			registerFactory 'paddedIcon', new PaddedIconFactory()
-			registerFactory 'textField', new TextArgWidgetFactory(JXFormattedTextField)
 		}
 		catch (Throwable e) {
 			log.warn 'Failed to register Ousia extras'
@@ -149,8 +151,11 @@ class OusiaBuilder extends SwingBuilder {
 			registerFactory 'breadcrumbBar', new BreadcrumbBarFactory()
 			registerBeanFactory 'breadcrumbFileSelector', BreadcrumbFileSelector
 			registerFactory 'commandButtonStrip', new JCommandButtonStripFactory()
+			registerFactory 'commandPopupMenu', new JCommandPopupMenuFactory()
 			registerFactory 'commandButton', new CommandButtonFactory(JCommandButton)
 			registerFactory 'commandToggleButton', new CommandButtonFactory(JCommandToggleButton)
+			registerFactory 'commandMenuButton', new CommandButtonFactory(JCommandMenuButton)
+			registerFactory 'commandToggleMenuButton', new CommandButtonFactory(JCommandToggleMenuButton)
 			registerFactory 'ribbonFrame', new RibbonFrameFactory()
 			registerFactory 'ribbonComponent', new RibbonComponentFactory()
 			registerBeanFactory 'ribbonApplicationMenu', RibbonApplicationMenu
@@ -171,6 +176,7 @@ class OusiaBuilder extends SwingBuilder {
 			registerBeanFactory 'statusBar', JXStatusBar
 //			registerBeanFactory 'table', JXTable
 			registerBeanFactory 'treeTable', JXTreeTable
+			registerFactory 'textField', new TextArgWidgetFactory(JXFormattedTextField)
 		}
 		catch (Throwable e) {
 			log.warn 'Failed to register swingx components'

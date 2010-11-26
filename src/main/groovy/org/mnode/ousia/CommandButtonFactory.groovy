@@ -58,13 +58,28 @@ class CommandButtonFactory extends AbstractFactory {
 	final Class klass;
 
 	CommandButtonFactory(Class klass) {
+        this.klass = klass;
+		
         try {
             iconCtor = klass.getConstructor(ICON_ARGS);
-            stringCtor = klass.getConstructor(STRING_ARGS);
-            stringIconCtor = klass.getConstructor(STRING_ICON_ARGS);
-            this.klass = klass;
         } catch (NoSuchMethodException ex) {
-            Logger.getLogger("global").log(Level.INFO, null, ex);
+            Logger.getLogger("global").log(Level.FINE, null, ex);
+        } catch (SecurityException ex) {
+            Logger.getLogger("global").log(Level.SEVERE, null, ex);
+        }
+
+        try {
+            stringCtor = klass.getConstructor(STRING_ARGS);
+        } catch (NoSuchMethodException ex) {
+            Logger.getLogger("global").log(Level.FINE, null, ex);
+        } catch (SecurityException ex) {
+            Logger.getLogger("global").log(Level.SEVERE, null, ex);
+        }
+		
+        try {
+            stringIconCtor = klass.getConstructor(STRING_ICON_ARGS);
+        } catch (NoSuchMethodException ex) {
+            Logger.getLogger("global").log(Level.FINE, null, ex);
         } catch (SecurityException ex) {
             Logger.getLogger("global").log(Level.SEVERE, null, ex);
         }
@@ -78,9 +93,9 @@ class CommandButtonFactory extends AbstractFactory {
         try {
             if (value instanceof GString) value = value as String
             if (value instanceof ResizableIcon) {
-                button = iconCtor.newInstance(value);
+                button = (iconCtor) ? iconCtor.newInstance(value) : stringIconCtor.newInstance(null, value);
             } else if (value instanceof String) {
-                button = stringCtor.newInstance(value);
+                button = (stringCtor) ? stringCtor.newInstance(value) : stringIconCtor.newInstance(value, null);
             } else if (klass.isAssignableFrom(value.getClass())) {
                 button = value;
             } else {
