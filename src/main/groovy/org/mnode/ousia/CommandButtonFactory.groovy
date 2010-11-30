@@ -90,8 +90,10 @@ class CommandButtonFactory extends AbstractFactory {
 			IllegalAccessException {
 
 		AbstractCommandButton button
+		
         try {
             if (value instanceof GString) value = value as String
+			
             if (value instanceof ResizableIcon) {
                 button = (iconCtor) ? iconCtor.newInstance(value) : stringIconCtor.newInstance(null, value);
             } else if (value instanceof String) {
@@ -106,6 +108,12 @@ class CommandButtonFactory extends AbstractFactory {
         } catch (InvocationTargetException e) {
             throw new RuntimeException("Failed to create component for '$name' reason: $e", e);
         }
+		
+		def action = attributes.remove('action')
+		if (action) {
+			button.text = action.getValue('Name')
+			button.addActionListener action
+		}
 		
 		def selected = attributes.remove('selected')
 		if (button && selected) {
