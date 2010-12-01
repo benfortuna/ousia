@@ -40,7 +40,6 @@ import javax.swing.JComponent;
 
 import groovy.util.FactoryBuilderSupport;
 
-import org.mnode.ousia.flamingo.RibbonComponentFactory.JRibbonComponentEx;
 import org.pushingpixels.flamingo.api.common.AbstractCommandButton;
 import org.pushingpixels.flamingo.api.ribbon.JRibbonBand;
 import org.pushingpixels.flamingo.api.ribbon.JRibbonComponent;
