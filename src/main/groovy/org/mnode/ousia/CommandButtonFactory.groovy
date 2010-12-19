@@ -90,16 +90,34 @@ class CommandButtonFactory extends AbstractFactory {
 
 		AbstractCommandButton button
 		
+		def updateFromAction = { action ->
+			button.text = action.getValue('Name')
+			button.addActionListener action
+			if (action.getValue(Action.SMALL_ICON) instanceof ResizableIcon) {
+				button.icon = action.getValue(Action.SMALL_ICON)
+			}
+		}
+		
         try {
             if (value instanceof GString) value = value as String
 			
             if (value instanceof ResizableIcon) {
                 button = (iconCtor) ? iconCtor.newInstance(value) : stringIconCtor.newInstance(null, value);
-            } else if (value instanceof String) {
+            }
+			else if (value instanceof Action) {
+                button = (stringCtor) ? stringCtor.newInstance('') : stringIconCtor.newInstance('', null);
+				updateFromAction(value)
+			}
+			else if (value instanceof String) {
                 button = (stringCtor) ? stringCtor.newInstance(value) : stringIconCtor.newInstance(value, null);
-            } else if (klass.isAssignableFrom(value.getClass())) {
+            }
+			else if (klass.isAssignableFrom(value.getClass())) {
                 button = value;
-            } else {
+            }
+			else if (value == null) {
+                button = (stringCtor) ? stringCtor.newInstance(null) : stringIconCtor.newInstance(null, null);
+			}
+			else {
                 throw new RuntimeException("$name can only have a value argument of type org.pushingpixels.flamingo.api.common.icon.ResizableIcon, java.lang.String, or $klass.name");
             }
         } catch (IllegalArgumentException e) {
@@ -110,11 +128,7 @@ class CommandButtonFactory extends AbstractFactory {
 		
 		def action = attributes.remove('action')
 		if (action) {
-			button.text = action.getValue('Name')
-			button.addActionListener action
-			if (action.getValue(Action.SMALL_ICON) instanceof ResizableIcon) {
-				button.icon = action.getValue(Action.SMALL_ICON)
-			}
+			updateFromAction(action)
 		}
 		
 		def selected = attributes.remove('selected')
@@ -128,5 +142,4 @@ class CommandButtonFactory extends AbstractFactory {
 		}
 		return button
 	}
-
 }
