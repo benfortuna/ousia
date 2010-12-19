@@ -31,17 +31,16 @@
  */
 package org.mnode.ousia
 
-import java.awt.event.ActionListener;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.awt.event.ActionListener
+import java.lang.reflect.Constructor
+import java.lang.reflect.InvocationTargetException
+import java.util.logging.Level
+import java.util.logging.Logger
 
-import javax.swing.Action;
-import javax.swing.Icon;
+import javax.swing.Action
 
-import org.pushingpixels.flamingo.api.common.AbstractCommandButton;
-import org.pushingpixels.flamingo.api.common.icon.ResizableIcon;
+import org.pushingpixels.flamingo.api.common.AbstractCommandButton
+import org.pushingpixels.flamingo.api.common.icon.ResizableIcon
 
 class CommandButtonFactory extends AbstractFactory {
 
@@ -113,6 +112,9 @@ class CommandButtonFactory extends AbstractFactory {
 		if (action) {
 			button.text = action.getValue('Name')
 			button.addActionListener action
+			if (action.getValue(Action.SMALL_ICON) instanceof ResizableIcon) {
+				button.icon = action.getValue(Action.SMALL_ICON)
+			}
 		}
 		
 		def selected = attributes.remove('selected')
