@@ -55,7 +55,7 @@ class JFileChooserFactory extends AbstractFactory {
 	public Object newInstance(FactoryBuilderSupport builder, Object name, Object value, Map attributes) throws InstantiationException,
 			IllegalAccessException {
 
-		println UIManager.lookAndFeel.name
+//		println UIManager.lookAndFeel.name
 		
 		if (UIManager.lookAndFeel.name == "GTK look and feel") {
 			try {
