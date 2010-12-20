@@ -76,7 +76,7 @@ class RibbonBandFactory extends AbstractFactory {
 	 */
 	void setChild(FactoryBuilderSupport builder,  parent,  child) {
 		if (child instanceof AbstractCommandButton) {
-			parent.addCommandButton child, RibbonElementPriority.MEDIUM
+			parent.addCommandButton child, RibbonElementPriority.TOP
 		}
 		else if (child instanceof JComponent) {
 			parent.addRibbonComponent new JRibbonComponent(child)
