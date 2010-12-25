@@ -35,22 +35,29 @@
 package org.mnode.ousia.flamingo
 
 
+import groovy.util.FactoryBuilderSupport;
+
 import javax.swing.JComponent;
 
 import org.pushingpixels.flamingo.api.ribbon.JRibbonComponent;
 
-import groovy.swing.factory.FrameFactory;
 
 /**
  * @author fortuna
  *
  */
-class RibbonComponentFactory extends FrameFactory {
+class RibbonComponentFactory extends AbstractFactory {
 	
 	public Object newInstance(FactoryBuilderSupport builder, Object name, Object value, Map attributes) throws InstantiationException, IllegalAccessException {
-		FactoryBuilderSupport.checkValueIsType(value, name, JComponent.class)
-
-		return new JRibbonComponent(value);
+		return attributes
 	}
-
+	
+	public void setParent(FactoryBuilderSupport build, Object parent, Object child) {
+		if (child?.rowSpan) {
+			parent.addRibbonComponent new JRibbonComponent(child.component), child.rowSpan
+		}
+		else if (child?.priority) {
+			parent.addCommandButton child.component, child.priority
+		}
+	}
 }

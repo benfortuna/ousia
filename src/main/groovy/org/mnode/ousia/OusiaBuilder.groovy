@@ -159,7 +159,7 @@ class OusiaBuilder extends SwingBuilder {
 			registerFactory 'commandToggleMenuButton', new CommandButtonFactory(JCommandToggleMenuButton)
 			registerFactory 'ribbonFrame', new RibbonFrameFactory()
 			registerFactory 'ribbonBand', new RibbonBandFactory()
-//			registerFactory 'ribbonComponent', new RibbonComponentFactory()
+			registerFactory 'ribbonComponent', new RibbonComponentFactory()
 			registerBeanFactory 'ribbonApplicationMenu', RibbonApplicationMenu
 			registerFactory 'ribbonApplicationMenuEntryPrimary', new RibbonApplicationMenuEntryFactory(RibbonApplicationMenuEntryPrimary)
 			registerFactory 'ribbonApplicationMenuEntrySecondary', new RibbonApplicationMenuEntryFactory(RibbonApplicationMenuEntrySecondary)

@@ -67,19 +67,47 @@ class RibbonBandFactory extends AbstractFactory {
 		}
 		icon = attributes.remove('icon')
 		def ribbonBand = new JRibbonBand(title, icon, null)
-		ribbonBand.resizePolicies = [new CoreRibbonResizePolicies.Mirror(ribbonBand.controlPanel)]
+		
+		def resizePolicy = attributes.remove('resizePolicy')
+		if (resizePolicy) {
+			if ('permissive' == resizePolicy) {
+				ribbonBand.resizePolicies = CoreRibbonResizePolicies.getCorePoliciesPermissive(ribbonBand)
+			}
+			if ('restrictive' == resizePolicy) {
+				ribbonBand.resizePolicies = CoreRibbonResizePolicies.getCorePoliciesRestrictive(ribbonBand)
+			}
+			if ('none' == resizePolicy) {
+				ribbonBand.resizePolicies = CoreRibbonResizePolicies.getCorePoliciesNone(ribbonBand)
+			}
+		}
+		else {
+			def rp = []
+			
+			def resizePolicies = attributes.remove('resizePolicies')
+			resizePolicies?.each {
+				if ('mirror' == it) {
+					rp << new CoreRibbonResizePolicies.Mirror(ribbonBand.controlPanel)
+				}
+				else if ('mid2low' == it) {
+					rp << new CoreRibbonResizePolicies.Mid2Low(ribbonBand.controlPanel)
+				}
+			}
+			ribbonBand.resizePolicies = rp
+		}
 		return ribbonBand
 	}
 	
 	/**
 	 * {@inheritDoc}
 	 */
-	void setChild(FactoryBuilderSupport builder,  parent,  child) {
-		if (child instanceof AbstractCommandButton) {
-			parent.addCommandButton child, RibbonElementPriority.TOP
+	/*
+	void setChild(FactoryBuilderSupport builder, parent, child) {
+		if (child.component instanceof AbstractCommandButton) {
+			parent.addCommandButton child.component, child.priority
 		}
-		else if (child instanceof JComponent) {
-			parent.addRibbonComponent new JRibbonComponent(child)
+		else if (child.component instanceof JComponent) {
+			parent.addRibbonComponent new JRibbonComponent(child.component), child.rowSpan
 		}
 	}
+	*/
 }
