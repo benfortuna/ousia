@@ -32,6 +32,8 @@
 package org.mnode.ousia;
 
 import java.awt.Desktop;
+import java.net.URI;
+import java.net.URL;
 
 import javax.swing.event.HyperlinkEvent;
 import javax.swing.event.HyperlinkListener;
@@ -44,17 +46,55 @@ import org.jdesktop.swingx.JXErrorPane;
  */
 public class HyperlinkBrowser implements HyperlinkListener {
 
+	private HyperlinkFeedback feedback;
+	
     /**
      * {@inheritDoc}
      */
     public void hyperlinkUpdate(HyperlinkEvent e) {
         if (e.getEventType() == HyperlinkEvent.EventType.ACTIVATED) {
             try {
-                Desktop.getDesktop().browse(e.getURL().toURI());
+            	final URI uri = e.getURL().toURI();
+            	if ("mailto".equalsIgnoreCase(uri.getScheme())) {
+            		Desktop.getDesktop().mail(uri);
+            	}
+            	else {
+                    Desktop.getDesktop().browse(uri);
+            	}
             } catch (Exception ex) {
                 JXErrorPane.showDialog(ex);
             }
         }
+        else if (e.getEventType() == HyperlinkEvent.EventType.ENTERED) {
+        	if (feedback != null) {
+        		feedback.show(e.getURL());
+        	}
+        }
+        else if (e.getEventType() == HyperlinkEvent.EventType.EXITED) {
+        	if (feedback != null) {
+        		feedback.hide();
+        	}
+        }
     }
 
+    /**
+	 * @return the feedback
+	 */
+	public HyperlinkFeedback getFeedback() {
+		return feedback;
+	}
+
+	/**
+	 * @param feedback the feedback to set
+	 */
+	public void setFeedback(HyperlinkFeedback feedback) {
+		this.feedback = feedback;
+	}
+
+	public static interface HyperlinkFeedback {
+    	
+    	void show(URL url);
+    	
+    	void hide();
+    }
 }
