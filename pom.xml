@@ -42,47 +42,37 @@
 		<dependency>
 			<groupId>org.codehaus.groovy</groupId>
 			<artifactId>groovy-all</artifactId>
-			<exclusions>
-				<exclusion>
-					<groupId>org.apache.ant</groupId>
-					<artifactId>ant</artifactId>
-				</exclusion>
-			</exclusions>
 		</dependency>
+		
 		<dependency>
 			<groupId>net.java.dev.substance</groupId>
 			<artifactId>substance</artifactId>
-			<version>6.1</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>net.java.dev.substance</groupId>
 			<artifactId>substance-swingx</artifactId>
-			<version>6.1</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>net.java.dev.substance</groupId>
 			<artifactId>swingx</artifactId>
-			<version>6.1</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>net.java.dev.substance</groupId>
 			<artifactId>trident</artifactId>
-			<version>6.1</version>
 			<scope>provided</scope>
 		</dependency>
+		
 		<dependency>
 			<groupId>org.apache.xmlgraphics</groupId>
 			<artifactId>batik-awt-util</artifactId>
-			<version>1.7</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.xmlgraphics</groupId>
 			<artifactId>batik-swing</artifactId>
-			<version>1.7</version>
 			<scope>provided</scope>
 			<exclusions>
 				<exclusion>
@@ -94,9 +84,9 @@
 		<dependency>
 			<groupId>org.apache.xmlgraphics</groupId>
 			<artifactId>batik-transcoder</artifactId>
-			<version>1.7</version>
 			<scope>provided</scope>
 		</dependency>
+		
 		<dependency>
 			<groupId>org.swinglabs</groupId>
 			<artifactId>jxlayer</artifactId>
@@ -196,6 +186,7 @@
 			<type>jar</type>
 			<scope>provided</scope>
 		</dependency>
+		
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
