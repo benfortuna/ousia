@@ -34,11 +34,15 @@
  */
 package org.mnode.ousia
 
-import javax.swing.JFrame;
+import groovy.swing.factory.FrameFactory
+import groovy.util.FactoryBuilderSupport;
 
-import org.pushingpixels.flamingo.api.ribbon.JRibbonFrame;
+import java.util.Map
 
-import groovy.swing.factory.FrameFactory;
+import javax.swing.JFrame
+
+import org.mnode.ousia.tracker.TrackerRegistry
+import org.pushingpixels.flamingo.api.ribbon.JRibbonFrame
 
 /**
  * @author fortuna
@@ -53,10 +57,20 @@ class RibbonFrameFactory extends FrameFactory {
 		} else {
 			frame = new JRibbonFrame()
 		}
-
+		
 		handleRootPaneTasks(builder, frame, attributes)
-
+		
+		builder.context.trackingEnabled = attributes.remove('trackingEnabled')
+		builder.context.id = attributes['id']
+		
 		return frame;
 	}
 
+	void onNodeCompleted(FactoryBuilderSupport builder, Object parent, Object node) {
+		super.onNodeCompleted builder, parent, node
+		
+		if (builder.context.trackingEnabled) {
+			TrackerRegistry.instance.register node, builder.context.id
+		}
+	}
 }
