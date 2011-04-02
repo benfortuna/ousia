@@ -34,6 +34,7 @@ package org.mnode.ousia
 import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Insets;
+import java.util.prefs.Preferences;
 
 import javax.swing.UIManager;
 import javax.swing.text.html.StyleSheet;
@@ -256,6 +257,15 @@ class OusiaBuilder extends SwingBuilder {
 			edt {
 				component.cursor = Cursor.defaultCursor
 			}
+		}
+	}
+	
+	Preferences prefs(Class clazz = null) {
+		if (clazz) {
+			return Preferences.userNodeForPackage(clazz)
+		}
+		else {
+			return Preferences.userRoot()
 		}
 	}
 }
