@@ -31,45 +31,47 @@
  */
 package org.mnode.ousia
 
-import java.awt.Component;
-import java.awt.Cursor;
-import java.awt.Insets;
-import java.util.prefs.Preferences;
-
-import javax.swing.UIManager;
-import javax.swing.text.html.StyleSheet;
-
-import net.miginfocom.swing.MigLayout;
-
-import org.fife.ui.rsyntaxtextarea.RSyntaxTextArea;
-import org.fife.ui.rsyntaxtextarea.TextEditorPane;
-import org.fife.ui.rtextarea.RTextArea;
-import org.fife.ui.rtextarea.RTextScrollPane;
-import org.jdesktop.swingx.JXFormattedTextField;
-import org.jdesktop.swingx.JXStatusBar;
-import org.jdesktop.swingx.JXTreeTable;
-import org.mnode.ousia.flamingo.JCommandPopupMenuFactory;
-import org.mnode.ousia.flamingo.RibbonBandFactory;
-import org.mnode.ousia.flamingo.RibbonComponentFactory;
-import org.mnode.ousia.glazedlists.FilterListFactory;
-import org.noos.xing.mydoggy.plaf.MyDoggyToolWindowManager;
-import org.pushingpixels.flamingo.api.bcb.core.BreadcrumbFileSelector;
-import org.pushingpixels.flamingo.api.common.JCommandButton;
-import org.pushingpixels.flamingo.api.common.JCommandMenuButton;
-import org.pushingpixels.flamingo.api.common.JCommandToggleButton;
-import org.pushingpixels.flamingo.api.common.JCommandToggleMenuButton;
-import org.pushingpixels.flamingo.api.ribbon.RibbonApplicationMenu;
-import org.pushingpixels.flamingo.api.ribbon.RibbonApplicationMenuEntryFooter;
-import org.pushingpixels.flamingo.api.ribbon.RibbonApplicationMenuEntryPrimary;
-import org.pushingpixels.flamingo.api.ribbon.RibbonApplicationMenuEntrySecondary;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import groovy.swing.LookAndFeelHelper;
+import groovy.lang.Closure
+import groovy.swing.LookAndFeelHelper
 import groovy.swing.SwingBuilder
-import groovy.swing.factory.LayoutFactory;
-import groovy.swing.factory.ScrollPaneFactory;
-import groovy.swing.factory.TextArgWidgetFactory;
+import groovy.swing.factory.LayoutFactory
+import groovy.swing.factory.ScrollPaneFactory
+import groovy.swing.factory.TextArgWidgetFactory
+
+import java.awt.Component
+import java.awt.Cursor
+import java.awt.Insets
+import java.util.Locale
+import java.util.prefs.Preferences
+
+import javax.swing.UIManager
+import javax.swing.text.html.StyleSheet
+
+import net.miginfocom.swing.MigLayout
+
+import org.fife.ui.rsyntaxtextarea.RSyntaxTextArea
+import org.fife.ui.rsyntaxtextarea.TextEditorPane
+import org.fife.ui.rtextarea.RTextArea
+import org.fife.ui.rtextarea.RTextScrollPane
+import org.jdesktop.swingx.JXFormattedTextField
+import org.jdesktop.swingx.JXStatusBar
+import org.jdesktop.swingx.JXTreeTable
+import org.mnode.ousia.flamingo.JCommandPopupMenuFactory
+import org.mnode.ousia.flamingo.RibbonBandFactory
+import org.mnode.ousia.flamingo.RibbonComponentFactory
+import org.mnode.ousia.glazedlists.FilterListFactory
+import org.noos.xing.mydoggy.plaf.MyDoggyToolWindowManager
+import org.pushingpixels.flamingo.api.bcb.core.BreadcrumbFileSelector
+import org.pushingpixels.flamingo.api.common.JCommandButton
+import org.pushingpixels.flamingo.api.common.JCommandMenuButton
+import org.pushingpixels.flamingo.api.common.JCommandToggleButton
+import org.pushingpixels.flamingo.api.common.JCommandToggleMenuButton
+import org.pushingpixels.flamingo.api.ribbon.RibbonApplicationMenu
+import org.pushingpixels.flamingo.api.ribbon.RibbonApplicationMenuEntryFooter
+import org.pushingpixels.flamingo.api.ribbon.RibbonApplicationMenuEntryPrimary
+import org.pushingpixels.flamingo.api.ribbon.RibbonApplicationMenuEntrySecondary
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 
 class OusiaBuilder extends SwingBuilder {
 
