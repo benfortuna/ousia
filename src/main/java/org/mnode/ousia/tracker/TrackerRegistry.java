@@ -39,6 +39,7 @@ import java.util.Map;
 import javax.swing.JSplitPane;
 
 import org.jdesktop.swingx.JXStatusBar;
+import org.pushingpixels.flamingo.api.ribbon.JRibbonFrame;
 
 /**
  * Manages the monitoring of user interface preferences.
@@ -57,6 +58,8 @@ public final class TrackerRegistry {
 
     private Map<String, JXStatusBarTracker> jxStatusBarTrackers;
 
+    private Map<String, JRibbonFrameTracker> jRibbonFrameTrackers;
+
     /**
      * Constructor made private to enforce singleton.
      */
@@ -65,6 +68,7 @@ public final class TrackerRegistry {
         jSplitPaneTrackers = new HashMap<String, JSplitPaneTracker>();
         frameTrackers = new HashMap<String, FrameTracker>();
         jxStatusBarTrackers = new HashMap<String, JXStatusBarTracker>();
+        jRibbonFrameTrackers = new HashMap<String, JRibbonFrameTracker>();
     }
 
     /**
@@ -123,5 +127,10 @@ public final class TrackerRegistry {
     public void register(final JXStatusBar statusBar, final String id) {
         JXStatusBarTracker tracker = new JXStatusBarTracker(statusBar, id);
         jxStatusBarTrackers.put(tracker.getUniqueId(), tracker);
+    }
+    
+    public void register(final JRibbonFrame ribbonFrame, final String id) {
+        JRibbonFrameTracker tracker = new JRibbonFrameTracker(ribbonFrame, id);
+        jRibbonFrameTrackers.put(tracker.getUniqueId(), tracker);
     }
 }
