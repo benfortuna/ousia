@@ -34,25 +34,23 @@
  */
 package org.mnode.ousia
 
-import java.awt.Component;
-import java.util.Map;
+import groovy.util.AbstractFactory
+import groovy.util.FactoryBuilderSupport
 
-import javax.swing.JComponent;
+import java.util.Map
 
-import org.jdesktop.jxlayer.JXLayer;
-import org.jdesktop.jxlayer.plaf.LayerUI;
-import org.jdesktop.jxlayer.plaf.ext.LockableUI;
+import javax.swing.JComponent
 
-
-import groovy.util.AbstractFactory;
-import groovy.util.FactoryBuilderSupport;
+import org.jdesktop.jxlayer.JXLayer
+import org.jdesktop.jxlayer.plaf.LayerUI
+import org.mnode.ousia.tracker.TrackerRegistry
 
 /**
  * @author fortuna
  *
  */
 class JXLayerFactory extends AbstractFactory {
-
+	
 	/**
 	 * {@inheritDoc}
 	 */
@@ -62,10 +60,22 @@ class JXLayerFactory extends AbstractFactory {
 
 		FactoryBuilderSupport.checkValueIsType(value, name, LayerUI)
 		JXLayer layer = new JXLayer<JComponent>(null, value)
+		
+		builder.context.trackingEnabled = attributes.remove('trackingEnabled')
+		builder.context.id = attributes['id']
+		
 		return layer
 	}
 
 	void setChild(FactoryBuilderSupport builder, parent, child) {
 		parent.view = child
+	}
+	
+	void onNodeCompleted(FactoryBuilderSupport builder, Object parent, Object node) {
+		super.onNodeCompleted builder, parent, node
+		
+		if (builder.context.trackingEnabled) {
+			TrackerRegistry.instance.register node, builder.context.id
+		}
 	}
 }

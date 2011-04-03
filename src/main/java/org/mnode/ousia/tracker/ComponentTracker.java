@@ -78,7 +78,7 @@ public class ComponentTracker implements ComponentListener {
 
         component.setLocation(getLocation());
         component.setSize(getSize());
-        // component.setVisible(isVisible());
+        component.setVisible(isVisible());
 
         component.addComponentListener(this);
     }
@@ -97,6 +97,7 @@ public class ComponentTracker implements ComponentListener {
      * {@inheritDoc}
      */
     public void componentHidden(final ComponentEvent e) {
+        getPreferences().putBoolean(getUniqueId() + ".visible", false);
     }
 
     /**
@@ -121,6 +122,7 @@ public class ComponentTracker implements ComponentListener {
      * {@inheritDoc}
      */
     public void componentShown(final ComponentEvent e) {
+        getPreferences().putBoolean(getUniqueId() + ".visible", true);
     }
 
     /**
@@ -166,5 +168,12 @@ public class ComponentTracker implements ComponentListener {
      */
     public final Preferences getPreferences() {
         return preferences;
+    }
+
+    /**
+     * @return the saved visibility of the component.
+     */
+    public boolean isVisible() {
+        return getPreferences().getBoolean(getUniqueId() + ".visible", component.isVisible());
     }
 }
