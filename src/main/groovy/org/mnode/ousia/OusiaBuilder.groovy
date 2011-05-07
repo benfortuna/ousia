@@ -59,6 +59,7 @@ import org.jdesktop.swingx.JXTreeTable
 import org.mnode.ousia.flamingo.JCommandPopupMenuFactory
 import org.mnode.ousia.flamingo.RibbonBandFactory
 import org.mnode.ousia.flamingo.RibbonComponentFactory
+import org.mnode.ousia.flamingo.RibbonTaskFactory;
 import org.mnode.ousia.glazedlists.FilterListFactory
 import org.noos.xing.mydoggy.plaf.MyDoggyToolWindowManager
 import org.pushingpixels.flamingo.api.bcb.core.BreadcrumbFileSelector
@@ -162,6 +163,7 @@ class OusiaBuilder extends SwingBuilder {
 			registerFactory 'commandToggleMenuButton', new CommandButtonFactory(JCommandToggleMenuButton)
 			registerFactory 'ribbonFrame', new RibbonFrameFactory()
 			registerFactory 'ribbonBand', new RibbonBandFactory()
+			registerFactory 'ribbonTask', new RibbonTaskFactory()
 			registerFactory 'ribbonComponent', new RibbonComponentFactory()
 			registerBeanFactory 'ribbonApplicationMenu', RibbonApplicationMenu
 			registerFactory 'ribbonApplicationMenuEntryPrimary', new RibbonApplicationMenuEntryFactory(RibbonApplicationMenuEntryPrimary)
