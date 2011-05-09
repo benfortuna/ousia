@@ -48,14 +48,16 @@ import org.pushingpixels.flamingo.api.ribbon.JRibbonFrame
  * @author fortuna
  *
  */
-class RibbonFrameFactory extends FrameFactory {
+class OusiaFrameFactory extends FrameFactory {
+	
+	Class<? extends JFrame> klass
 	
 	public Object newInstance(FactoryBuilderSupport builder, Object name, Object value, Map attributes) throws InstantiationException, IllegalAccessException {
 		JFrame frame
 		if (FactoryBuilderSupport.checkValueIsType(value, name, JFrame.class)) {
 			frame = value
 		} else {
-			frame = new JRibbonFrame()
+			frame = klass.newInstance()
 		}
 		
 		handleRootPaneTasks(builder, frame, attributes)
