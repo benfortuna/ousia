@@ -35,14 +35,13 @@
 package org.mnode.ousia
 
 import groovy.swing.factory.FrameFactory
-import groovy.util.FactoryBuilderSupport;
+import groovy.util.FactoryBuilderSupport
 
 import java.util.Map
 
 import javax.swing.JFrame
 
 import org.mnode.ousia.tracker.TrackerRegistry
-import org.pushingpixels.flamingo.api.ribbon.JRibbonFrame
 
 /**
  * @author fortuna
@@ -50,7 +49,7 @@ import org.pushingpixels.flamingo.api.ribbon.JRibbonFrame
  */
 class OusiaFrameFactory extends FrameFactory {
 	
-	Class<? extends JFrame> klass
+	Class klass
 	
 	public Object newInstance(FactoryBuilderSupport builder, Object name, Object value, Map attributes) throws InstantiationException, IllegalAccessException {
 		JFrame frame
