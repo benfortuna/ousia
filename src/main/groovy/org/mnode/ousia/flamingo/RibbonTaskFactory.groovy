@@ -31,22 +31,22 @@
  */
 package org.mnode.ousia.flamingo
 
-import java.util.Map;
+import groovy.util.AbstractFactory
+import groovy.util.FactoryBuilderSupport
 
-import org.pushingpixels.flamingo.api.ribbon.JRibbonBand;
-import org.pushingpixels.flamingo.api.ribbon.RibbonTask;
+import java.util.Map
 
-import groovy.util.AbstractFactory;
-import groovy.util.FactoryBuilderSupport;
+import org.pushingpixels.flamingo.api.ribbon.JRibbonBand
+import org.pushingpixels.flamingo.api.ribbon.RibbonTask
 
 class RibbonTaskFactory extends AbstractFactory {
 
 	@Override
-	public Object newInstance(FactoryBuilderSupport builder, Object name, Object value, Map attributes) throws InstantiationException,
+	Object newInstance(FactoryBuilderSupport builder, Object name, Object value, Map attributes) throws InstantiationException,
 			IllegalAccessException {
 
 		def bands = attributes.remove('bands')
-		return new RibbonTask(value, bands as JRibbonBand[]);
+		new RibbonTask(value, bands as JRibbonBand[])
 	}
 /*
 	public void setChild(FactoryBuilderSupport builder, Object parent, Object child) {

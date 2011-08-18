@@ -32,21 +32,20 @@
 package org.mnode.ousia.flamingo
 
 
-import java.util.Map;
+import groovy.util.AbstractFactory
+import groovy.util.FactoryBuilderSupport
 
-import org.pushingpixels.flamingo.api.common.JCommandButtonStrip.StripOrientation;
-import org.pushingpixels.flamingo.api.common.popup.JCommandPopupMenu;
+import java.util.Map
 
-import groovy.util.AbstractFactory;
-import groovy.util.FactoryBuilderSupport;
+import org.pushingpixels.flamingo.api.common.popup.JCommandPopupMenu
 
 class JCommandPopupMenuFactory extends AbstractFactory {
 
 	@Override
-	public Object newInstance(FactoryBuilderSupport builder, Object name, Object value, Map attributes) throws InstantiationException,
+	Object newInstance(FactoryBuilderSupport builder, Object name, Object value, Map attributes) throws InstantiationException,
 			IllegalAccessException {
 
-		return new JCommandPopupMenu()
+		new JCommandPopupMenu()
 	}
 
 	/**

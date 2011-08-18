@@ -31,17 +31,15 @@
  */
 package groovy.runtime.metaclass.javax.swing.text
 
-import java.awt.Component;
-import java.awt.Window;
+import groovy.lang.DelegatingMetaClass
+import groovy.lang.MetaClass
 
-import javax.swing.Icon;
-import javax.swing.text.AttributeSet;
-import javax.swing.text.Document;
-import javax.swing.text.SimpleAttributeSet;
-import javax.swing.text.StyleConstants;
+import java.awt.Component
 
-import groovy.lang.MetaClass;
-import groovy.lang.DelegatingMetaClass;
+import javax.swing.Icon
+import javax.swing.text.Document
+import javax.swing.text.SimpleAttributeSet
+import javax.swing.text.StyleConstants
 
 class DefaultStyledDocumentMetaClass extends DelegatingMetaClass {
 	
@@ -63,15 +61,15 @@ class DefaultStyledDocumentMetaClass extends DelegatingMetaClass {
 	}
 
 	void append(Document doc, Component component, String style) {
-		SimpleAttributeSet sas = new SimpleAttributeSet();
-		sas.addAttribute(StyleConstants.NameAttribute, "component")
+		SimpleAttributeSet sas = new SimpleAttributeSet()
+		sas.addAttribute(StyleConstants.NameAttribute, 'component')
 		StyleConstants.setComponent(sas, component)
 		append(doc, component.toString(), sas)
 	}
 
 	void append(Document doc, Icon icon, String style) {
-		SimpleAttributeSet sas = new SimpleAttributeSet();
-		sas.addAttribute(StyleConstants.NameAttribute, "icon")
+		SimpleAttributeSet sas = new SimpleAttributeSet()
+		sas.addAttribute(StyleConstants.NameAttribute, 'icon')
 		StyleConstants.setIcon(sas, icon)
 		append(doc, icon.toString(), sas)
 	}

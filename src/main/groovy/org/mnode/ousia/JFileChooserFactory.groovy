@@ -34,13 +34,13 @@
  */
 package org.mnode.ousia
 
-import java.util.Map;
+import groovy.util.AbstractFactory
+import groovy.util.FactoryBuilderSupport
 
-import javax.swing.JFileChooser;
-import javax.swing.UIManager;
+import java.util.Map
 
-import groovy.util.AbstractFactory;
-import groovy.util.FactoryBuilderSupport;
+import javax.swing.JFileChooser
+import javax.swing.UIManager
 
 /**
  * @author fortuna
@@ -52,22 +52,22 @@ class JFileChooserFactory extends AbstractFactory {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public Object newInstance(FactoryBuilderSupport builder, Object name, Object value, Map attributes) throws InstantiationException,
+	Object newInstance(FactoryBuilderSupport builder, Object name, Object value, Map attributes) throws InstantiationException,
 			IllegalAccessException {
 
 //		println UIManager.lookAndFeel.name
 		
-		if (UIManager.lookAndFeel.name == "GTK look and feel") {
+		if (UIManager.lookAndFeel.name == 'GTK look and feel') {
 			try {
 				// ensure class is available..
 				Class.forName('eu.kostia.gtkjfilechooser.ui.GtkFileChooserUI')
-				UIManager.put("FileChooserUI", "eu.kostia.gtkjfilechooser.ui.GtkFileChooserUI");
+				UIManager.put('FileChooserUI', 'eu.kostia.gtkjfilechooser.ui.GtkFileChooserUI')
 			}
 			catch (Throwable e) {
 				// use default UI
 			}
 		}
-		return new JFileChooser();
+		new JFileChooser()
 	}
 
 }

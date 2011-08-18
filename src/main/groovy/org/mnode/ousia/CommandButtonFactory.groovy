@@ -31,56 +31,59 @@
  */
 package org.mnode.ousia
 
+import groovy.util.logging.Log
+import groovy.util.logging.Slf4j;
+
 import java.awt.event.ActionListener
 import java.lang.reflect.Constructor
 import java.lang.reflect.InvocationTargetException
 import java.util.logging.Level
-import java.util.logging.Logger
 
 import javax.swing.Action
 
 import org.pushingpixels.flamingo.api.common.AbstractCommandButton
 import org.pushingpixels.flamingo.api.common.icon.ResizableIcon
 
+@Slf4j
 class CommandButtonFactory extends AbstractFactory {
 
-	@SuppressWarnings("rawtypes")
-	static final Class<?>[] ICON_ARGS = [ResizableIcon];
-	@SuppressWarnings("rawtypes")
-	static final Class<?>[] STRING_ARGS = [String];
-	@SuppressWarnings("rawtypes")
-	static final Class<?>[] STRING_ICON_ARGS = [String, ResizableIcon];
+	@SuppressWarnings('rawtypes')
+	static final Class<?>[] ICON_ARGS = [ResizableIcon]
+	@SuppressWarnings('rawtypes')
+	static final Class<?>[] STRING_ARGS = [String]
+	@SuppressWarnings('rawtypes')
+	static final Class<?>[] STRING_ICON_ARGS = [String, ResizableIcon]
 	
-	final Constructor<?> iconCtor;
-	final Constructor<?> stringCtor;
-	final Constructor<?> stringIconCtor;
-	final Class klass;
+	final Constructor<?> iconCtor
+	final Constructor<?> stringCtor
+	final Constructor<?> stringIconCtor
+	final Class klass
 
 	CommandButtonFactory(Class klass) {
-        this.klass = klass;
+        this.klass = klass
 		
         try {
-            iconCtor = klass.getConstructor(ICON_ARGS);
+            iconCtor = klass.getConstructor(ICON_ARGS)
         } catch (NoSuchMethodException ex) {
-            Logger.getLogger("global").log(Level.FINE, null, ex);
+            log.debug(null, ex)
         } catch (SecurityException ex) {
-            Logger.getLogger("global").log(Level.SEVERE, null, ex);
+            log.error(null, ex)
         }
 
         try {
-            stringCtor = klass.getConstructor(STRING_ARGS);
+            stringCtor = klass.getConstructor(STRING_ARGS)
         } catch (NoSuchMethodException ex) {
-            Logger.getLogger("global").log(Level.FINE, null, ex);
+            log.debug(null, ex)
         } catch (SecurityException ex) {
-            Logger.getLogger("global").log(Level.SEVERE, null, ex);
+            log.error(null, ex)
         }
 		
         try {
-            stringIconCtor = klass.getConstructor(STRING_ICON_ARGS);
+            stringIconCtor = klass.getConstructor(STRING_ICON_ARGS)
         } catch (NoSuchMethodException ex) {
-            Logger.getLogger("global").log(Level.FINE, null, ex);
+            log.debug(null, ex)
         } catch (SecurityException ex) {
-            Logger.getLogger("global").log(Level.SEVERE, null, ex);
+            log.error(null, ex)
         }
     }
 	
@@ -99,31 +102,33 @@ class CommandButtonFactory extends AbstractFactory {
 		}
 		
         try {
-            if (value instanceof GString) value = value as String
+            if (value instanceof GString) {
+				value = value as String
+            }
 			
             if (value instanceof ResizableIcon) {
-                button = (iconCtor) ? iconCtor.newInstance(value) : stringIconCtor.newInstance(null, value);
+                button = (iconCtor) ? iconCtor.newInstance(value) : stringIconCtor.newInstance(null, value)
             }
 			else if (value instanceof Action) {
-                button = (stringCtor) ? stringCtor.newInstance('') : stringIconCtor.newInstance('', null);
+                button = (stringCtor) ? stringCtor.newInstance('') : stringIconCtor.newInstance('', null)
 				updateFromAction(value)
 			}
 			else if (value instanceof String) {
-                button = (stringCtor) ? stringCtor.newInstance(value) : stringIconCtor.newInstance(value, null);
+                button = (stringCtor) ? stringCtor.newInstance(value) : stringIconCtor.newInstance(value, null)
             }
 			else if (klass.isAssignableFrom(value.getClass())) {
-                button = value;
+                button = value
             }
 			else if (value == null) {
-                button = (stringCtor) ? stringCtor.newInstance(null) : stringIconCtor.newInstance(null, null);
+                button = (stringCtor) ? stringCtor.newInstance(null) : stringIconCtor.newInstance(null, null)
 			}
 			else {
-                throw new RuntimeException("$name can only have a value argument of type org.pushingpixels.flamingo.api.common.icon.ResizableIcon, java.lang.String, or $klass.name");
+                throw new RuntimeException("$name can only have a value argument of type org.pushingpixels.flamingo.api.common.icon.ResizableIcon, java.lang.String, or $klass.name")
             }
         } catch (IllegalArgumentException e) {
-            throw new RuntimeException("Failed to create component for '$name' reason: $e", e);
+            throw new RuntimeException("Failed to create component for '$name' reason: $e", e)
         } catch (InvocationTargetException e) {
-            throw new RuntimeException("Failed to create component for '$name' reason: $e", e);
+            throw new RuntimeException("Failed to create component for '$name' reason: $e", e)
         }
 		
 		def action = attributes.remove('action')
@@ -140,6 +145,6 @@ class CommandButtonFactory extends AbstractFactory {
 		if (button && actionPerformed) {
 			button.addActionListener actionPerformed
 		}
-		return button
+		button
 	}
 }

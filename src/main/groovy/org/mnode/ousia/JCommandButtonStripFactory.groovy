@@ -31,29 +31,29 @@
  */
 package org.mnode.ousia
 
-import java.util.Map;
+import groovy.util.AbstractFactory
+import groovy.util.FactoryBuilderSupport
 
-import org.pushingpixels.flamingo.api.common.JCommandButtonStrip;
-import org.pushingpixels.flamingo.api.common.JCommandButtonStrip.StripOrientation;
+import java.util.Map
 
-import groovy.util.AbstractFactory;
-import groovy.util.FactoryBuilderSupport;
+import org.pushingpixels.flamingo.api.common.JCommandButtonStrip
+import org.pushingpixels.flamingo.api.common.JCommandButtonStrip.StripOrientation
 
 class JCommandButtonStripFactory extends AbstractFactory {
 
 	@Override
-	public Object newInstance(FactoryBuilderSupport builder, Object name, Object value, Map attributes) throws InstantiationException,
+	Object newInstance(FactoryBuilderSupport builder, Object name, Object value, Map attributes) throws InstantiationException,
 			IllegalAccessException {
 
 		def commandButtonStrip
 		StripOrientation orientation = attributes.remove('orientation')
 		if (orientation) {
-			commandButtonStrip = new JCommandButtonStrip(orientation);
+			commandButtonStrip = new JCommandButtonStrip(orientation)
 		}
 		else {
-			commandButtonStrip = new JCommandButtonStrip();
+			commandButtonStrip = new JCommandButtonStrip()
 		}
-		return commandButtonStrip
+		commandButtonStrip
 	}
 
 	/**

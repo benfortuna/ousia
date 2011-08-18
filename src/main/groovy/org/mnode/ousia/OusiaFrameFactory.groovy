@@ -51,9 +51,9 @@ class OusiaFrameFactory extends FrameFactory {
 	
 	Class klass
 	
-	public Object newInstance(FactoryBuilderSupport builder, Object name, Object value, Map attributes) throws InstantiationException, IllegalAccessException {
+	Object newInstance(FactoryBuilderSupport builder, Object name, Object value, Map attributes) throws InstantiationException, IllegalAccessException {
 		JFrame frame
-		if (FactoryBuilderSupport.checkValueIsType(value, name, JFrame.class)) {
+		if (FactoryBuilderSupport.checkValueIsType(value, name, JFrame)) {
 			frame = value
 		} else {
 			frame = klass.newInstance()
@@ -64,7 +64,7 @@ class OusiaFrameFactory extends FrameFactory {
 		builder.context.trackingEnabled = attributes.remove('trackingEnabled')
 		builder.context.id = attributes['id']
 		
-		return frame;
+		frame
 	}
 
 	void onNodeCompleted(FactoryBuilderSupport builder, Object parent, Object node) {

@@ -34,19 +34,18 @@
  */
 package org.mnode.ousia
 
-import java.lang.reflect.Constructor;
-import java.util.Map;
+import groovy.util.AbstractFactory
+import groovy.util.FactoryBuilderSupport
 
-import groovy.util.AbstractFactory;
-import groovy.util.FactoryBuilderSupport;
+import java.awt.event.ActionListener
+import java.lang.reflect.Constructor
+import java.util.Map
 
-import java.awt.event.ActionListener;
-
-import org.pushingpixels.flamingo.api.common.JCommandButton.CommandButtonKind;
-import org.pushingpixels.flamingo.api.common.icon.ResizableIcon;
-import org.pushingpixels.flamingo.api.ribbon.RibbonApplicationMenu;
-import org.pushingpixels.flamingo.api.ribbon.RibbonApplicationMenuEntryFooter;
-import org.pushingpixels.flamingo.api.ribbon.RibbonApplicationMenuEntryPrimary;
+import org.pushingpixels.flamingo.api.common.JCommandButton.CommandButtonKind
+import org.pushingpixels.flamingo.api.common.icon.ResizableIcon
+import org.pushingpixels.flamingo.api.ribbon.RibbonApplicationMenu
+import org.pushingpixels.flamingo.api.ribbon.RibbonApplicationMenuEntryFooter
+import org.pushingpixels.flamingo.api.ribbon.RibbonApplicationMenuEntryPrimary
 
 
 /**
@@ -55,11 +54,11 @@ import org.pushingpixels.flamingo.api.ribbon.RibbonApplicationMenuEntryPrimary;
  */
 class RibbonApplicationMenuEntryFactory extends AbstractFactory {
 
-	private final Constructor<?> withKindConstructor;
+	private final Constructor<?> withKindConstructor
 	
-	private final Constructor<?> withoutKindConstructor;
+	private final Constructor<?> withoutKindConstructor
 
-	private final Class<?> clazz;
+	private final Class<?> clazz
 	
 	RibbonApplicationMenuEntryFactory(Class clazz) {
 		try {
@@ -81,7 +80,7 @@ class RibbonApplicationMenuEntryFactory extends AbstractFactory {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public Object newInstance(FactoryBuilderSupport builder, Object name, Object value, Map attributes) throws InstantiationException,
+	Object newInstance(FactoryBuilderSupport builder, Object name, Object value, Map attributes) throws InstantiationException,
 			IllegalAccessException {
 
 		ResizableIcon icon = attributes.remove('icon')
@@ -92,9 +91,7 @@ class RibbonApplicationMenuEntryFactory extends AbstractFactory {
 		if (withKindConstructor && entryKind) {
 			return withKindConstructor.newInstance(icon, text, mainActionListener, entryKind)
 		}
-		else {
-			return withoutKindConstructor.newInstance(icon, text, mainActionListener)
-		}
+		withoutKindConstructor.newInstance(icon, text, mainActionListener)
 	}
 
 	void setParent(FactoryBuilderSupport builder, parent, child) {

@@ -37,6 +37,7 @@ import groovy.swing.SwingBuilder
 import groovy.swing.factory.LayoutFactory
 import groovy.swing.factory.ScrollPaneFactory
 import groovy.swing.factory.TextArgWidgetFactory
+import groovy.util.logging.Slf4j
 
 import java.awt.Component
 import java.awt.Cursor
@@ -73,12 +74,9 @@ import org.pushingpixels.flamingo.api.ribbon.RibbonApplicationMenu
 import org.pushingpixels.flamingo.api.ribbon.RibbonApplicationMenuEntryFooter
 import org.pushingpixels.flamingo.api.ribbon.RibbonApplicationMenuEntryPrimary
 import org.pushingpixels.flamingo.api.ribbon.RibbonApplicationMenuEntrySecondary
-import org.slf4j.Logger
-import org.slf4j.LoggerFactory
 
+@Slf4j
 class OusiaBuilder extends SwingBuilder {
-
-	private static Logger log = LoggerFactory.getLogger(OusiaBuilder)
 	
     static {
         // remove padding from tabbed panes..
@@ -115,7 +113,7 @@ class OusiaBuilder extends SwingBuilder {
         LookAndFeelHelper.instance.addLookAndFeelAlias('seaglass', 'com.seaglasslookandfeel.SeaGlassLookAndFeel')
     }
     
-    public OusiaBuilder(boolean init = true) {
+    OusiaBuilder(boolean init = true) {
         super(init)
     }
 
@@ -133,7 +131,7 @@ class OusiaBuilder extends SwingBuilder {
 	
 	def registerLayouts() {
 		try {
-			registerFactory("migLayout", new LayoutFactory(MigLayout))
+			registerFactory('migLayout', new LayoutFactory(MigLayout))
 		}
 		catch (Throwable e) {
 			log.warn 'Failed to register layouts'
@@ -142,10 +140,10 @@ class OusiaBuilder extends SwingBuilder {
 	
     def registerRSyntaxComponents() {
 		try {
-	        registerFactory("rTextArea", new TextArgWidgetFactory(RTextArea))
-	        registerFactory("rSyntaxTextArea", new TextArgWidgetFactory(RSyntaxTextArea))
-	        registerFactory("textEditorPane", new TextArgWidgetFactory(TextEditorPane))
-	        registerFactory("rSyntaxScrollPane", new ScrollPaneFactory(RTextScrollPane))
+	        registerFactory('rTextArea', new TextArgWidgetFactory(RTextArea))
+	        registerFactory('rSyntaxTextArea', new TextArgWidgetFactory(RSyntaxTextArea))
+	        registerFactory('textEditorPane', new TextArgWidgetFactory(TextEditorPane))
+	        registerFactory('rSyntaxScrollPane', new ScrollPaneFactory(RTextScrollPane))
 		}
 		catch (Throwable e) {
 			log.warn 'Failed to register rsyntax components'
@@ -240,11 +238,11 @@ class OusiaBuilder extends SwingBuilder {
 		catch (MissingResourceException e) {
 			log.warn "Resource for key: ${key} not found in bundle: ${bundleName}"
 		}
-		return key
+		key
 	}
 	
 	String rs(String key, String bundleName = 'messages', Locale locale = Locale.default) {
-		return resourceString(key, bundleName, locale)
+		resourceString(key, bundleName, locale)
 	}
 	
 	/**
@@ -271,8 +269,6 @@ class OusiaBuilder extends SwingBuilder {
 		if (clazz) {
 			return Preferences.userNodeForPackage(clazz)
 		}
-		else {
-			return Preferences.userRoot()
-		}
+		Preferences.userRoot()
 	}
 }

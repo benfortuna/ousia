@@ -55,7 +55,7 @@ class JXLayerFactory extends AbstractFactory {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public Object newInstance(FactoryBuilderSupport builder, Object name, Object value, Map attributes) throws InstantiationException,
+	Object newInstance(FactoryBuilderSupport builder, Object name, Object value, Map attributes) throws InstantiationException,
 			IllegalAccessException {
 
 		FactoryBuilderSupport.checkValueIsType(value, name, LayerUI)
@@ -64,7 +64,7 @@ class JXLayerFactory extends AbstractFactory {
 		builder.context.trackingEnabled = attributes.remove('trackingEnabled')
 		builder.context.id = attributes['id']
 		
-		return layer
+		layer
 	}
 
 	void setChild(FactoryBuilderSupport builder, parent, child) {

@@ -36,15 +36,10 @@ package org.mnode.ousia.flamingo
 
 
 
-import javax.swing.JComponent;
+import groovy.util.FactoryBuilderSupport
 
-import groovy.util.FactoryBuilderSupport;
-
-import org.pushingpixels.flamingo.api.common.AbstractCommandButton;
-import org.pushingpixels.flamingo.api.ribbon.JRibbonBand;
-import org.pushingpixels.flamingo.api.ribbon.JRibbonComponent;
-import org.pushingpixels.flamingo.api.ribbon.RibbonElementPriority;
-import org.pushingpixels.flamingo.api.ribbon.resize.CoreRibbonResizePolicies;
+import org.pushingpixels.flamingo.api.ribbon.JRibbonBand
+import org.pushingpixels.flamingo.api.ribbon.resize.CoreRibbonResizePolicies
 
 
 /**
@@ -53,11 +48,13 @@ import org.pushingpixels.flamingo.api.ribbon.resize.CoreRibbonResizePolicies;
  */
 class RibbonBandFactory extends AbstractFactory {
 	
-	public Object newInstance(FactoryBuilderSupport builder, Object name, Object value, Map attributes) throws InstantiationException, IllegalAccessException {
+	Object newInstance(FactoryBuilderSupport builder, Object name, Object value, Map attributes) throws InstantiationException, IllegalAccessException {
 		def title
 		def icon
 		
-		if (value instanceof GString) value = value as String
+		if (value instanceof GString) {
+			value = value as String
+		}
 		
 		if (value instanceof String) {
 			title = value
@@ -94,7 +91,7 @@ class RibbonBandFactory extends AbstractFactory {
 			}
 			ribbonBand.resizePolicies = rp
 		}
-		return ribbonBand
+		ribbonBand
 	}
 	
 	/**

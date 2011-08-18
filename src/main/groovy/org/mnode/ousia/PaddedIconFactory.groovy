@@ -34,12 +34,12 @@
  */
 package org.mnode.ousia
 
-import java.util.Map;
+import groovy.util.AbstractFactory
+import groovy.util.FactoryBuilderSupport
 
-import javax.swing.Icon;
+import java.util.Map
 
-import groovy.util.AbstractFactory;
-import groovy.util.FactoryBuilderSupport;
+import javax.swing.Icon
 
 /**
  * @author fortuna
@@ -51,12 +51,12 @@ class PaddedIconFactory extends AbstractFactory {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public Object newInstance(FactoryBuilderSupport builder, Object name, Object value, Map attributes) throws InstantiationException,
+	Object newInstance(FactoryBuilderSupport builder, Object name, Object value, Map attributes) throws InstantiationException,
 			IllegalAccessException {
 
 		FactoryBuilderSupport.checkValueIsType(value, name, Icon)
 		def size = attributes.remove('size')
-		return new PaddedIcon(value, size.width, size.height);
+		new PaddedIcon(value, size.width, size.height)
 	}
 
 }

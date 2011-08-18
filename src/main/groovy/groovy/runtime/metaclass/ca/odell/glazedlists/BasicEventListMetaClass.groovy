@@ -31,7 +31,7 @@
  */
 package groovy.runtime.metaclass.ca.odell.glazedlists
 
-import groovy.lang.DelegatingMetaClass;
+import groovy.lang.DelegatingMetaClass
 
 class BasicEventListMetaClass extends DelegatingMetaClass {
 	

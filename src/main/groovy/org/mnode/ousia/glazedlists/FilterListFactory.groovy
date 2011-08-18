@@ -35,13 +35,13 @@
 package org.mnode.ousia.glazedlists
 
 
-import java.util.Map;
+import groovy.util.AbstractFactory
+import groovy.util.FactoryBuilderSupport
 
-import ca.odell.glazedlists.EventList;
-import ca.odell.glazedlists.FilterList;
+import java.util.Map
 
-import groovy.util.AbstractFactory;
-import groovy.util.FactoryBuilderSupport;
+import ca.odell.glazedlists.EventList
+import ca.odell.glazedlists.FilterList
 
 /**
  * @author fortuna
@@ -53,18 +53,16 @@ class FilterListFactory extends AbstractFactory {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public Object newInstance(FactoryBuilderSupport builder, Object name, Object value, Map attributes) throws InstantiationException,
+	Object newInstance(FactoryBuilderSupport builder, Object name, Object value, Map attributes) throws InstantiationException,
 			IllegalAccessException {
 
 		FactoryBuilderSupport.checkValueIsType(value, name, EventList)
 		def matcher = attributes.remove('matcher')
 
 		if (matcher) {
-			return new FilterList<?>(value, matcher);
+			return new FilterList<?>(value, matcher)
 		}
-		else {
-			return new FilterList<?>(value);
-		}
+		new FilterList<?>(value)
 	}
 
 }
