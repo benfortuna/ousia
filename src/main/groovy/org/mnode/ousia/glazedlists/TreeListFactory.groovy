@@ -29,24 +29,39 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package org.mnode.ousia
+/**
+ * 
+ */
+package org.mnode.ousia.glazedlists
 
-import javax.swing.JFrame;
+import groovy.util.AbstractFactory
+import groovy.util.FactoryBuilderSupport
 
-import org.pushingpixels.flamingo.api.common.CommandButtonDisplayState;
-import org.pushingpixels.flamingo.api.common.JCommandButtonStrip.StripOrientation;
+import java.util.Map
 
+import ca.odell.glazedlists.EventList
+import ca.odell.glazedlists.TreeList
+import ca.odell.glazedlists.TreeList.ExpansionModel
+import ca.odell.glazedlists.TreeList.Format
 
-new OusiaBuilder().edt {
-   ribbonFrame(title: 'JRibbonFrame Test', size: [320, 240], show: true, defaultCloseOperation: JFrame.EXIT_ON_CLOSE) {
-	   flowLayout()
-	   
-	   resizableIcon('/find.svg', size: [32, 32], id: 'findIcon')
-	   
-	   commandButtonStrip(displayState: CommandButtonDisplayState.FIT_TO_ICON) {
-		   commandButton('Button 1')
-		   commandButton('Button 2')
-		   commandButton findIcon
-	   }
-   }
+/**
+ * @author fortuna
+ *
+ */
+class TreeListFactory extends AbstractFactory {
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	Object newInstance(FactoryBuilderSupport builder, Object name, Object value, Map attributes) throws InstantiationException,
+			IllegalAccessException {
+
+		FactoryBuilderSupport.checkValueIsType(value, name, EventList)
+		ExpansionModel<?> expansionModel = attributes.remove('expansionModel')
+		Format<?> format = attributes.remove('format')
+		
+		new TreeList<?>(value, format, expansionModel)
+	}
+
 }

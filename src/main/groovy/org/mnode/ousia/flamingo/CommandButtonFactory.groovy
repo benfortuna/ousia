@@ -29,7 +29,7 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package org.mnode.ousia
+package org.mnode.ousia.flamingo
 
 import groovy.util.logging.Log
 import groovy.util.logging.Slf4j;

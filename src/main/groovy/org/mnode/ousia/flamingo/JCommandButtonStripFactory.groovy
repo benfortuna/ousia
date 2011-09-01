@@ -29,39 +29,37 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-/**
- * 
- */
-package org.mnode.ousia
+package org.mnode.ousia.flamingo
 
 import groovy.util.AbstractFactory
 import groovy.util.FactoryBuilderSupport
 
 import java.util.Map
 
-import ca.odell.glazedlists.EventList
-import ca.odell.glazedlists.TreeList
-import ca.odell.glazedlists.TreeList.ExpansionModel
-import ca.odell.glazedlists.TreeList.Format
+import org.pushingpixels.flamingo.api.common.JCommandButtonStrip
+import org.pushingpixels.flamingo.api.common.JCommandButtonStrip.StripOrientation
 
-/**
- * @author fortuna
- *
- */
-class TreeListFactory extends AbstractFactory {
+class JCommandButtonStripFactory extends AbstractFactory {
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	Object newInstance(FactoryBuilderSupport builder, Object name, Object value, Map attributes) throws InstantiationException,
 			IllegalAccessException {
 
-		FactoryBuilderSupport.checkValueIsType(value, name, EventList)
-		ExpansionModel<?> expansionModel = attributes.remove('expansionModel')
-		Format<?> format = attributes.remove('format')
-		
-		new TreeList<?>(value, format, expansionModel)
+		def commandButtonStrip
+		StripOrientation orientation = attributes.remove('orientation')
+		if (orientation) {
+			commandButtonStrip = new JCommandButtonStrip(orientation)
+		}
+		else {
+			commandButtonStrip = new JCommandButtonStrip()
+		}
+		commandButtonStrip
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	void setChild(FactoryBuilderSupport builder,  parent,  child) {
+		parent.add(child)
+	}
 }

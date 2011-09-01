@@ -29,9 +29,11 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package org.mnode.ousia
+package org.mnode.ousia.glazedlists
 
-import ca.odell.glazedlists.GlazedLists;
+import org.mnode.ousia.OusiaBuilder
+
+import ca.odell.glazedlists.GlazedLists
 
 
 def list = new OusiaBuilder().sortedList(GlazedLists.eventList([1, 4, 5, 2, 6, 8]), comparator: { a, b -> a <=> b} as Comparator<?>)

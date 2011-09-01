@@ -29,36 +29,24 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-/**
- * 
- */
-package org.mnode.ousia
+package org.mnode.ousia.glazedlists
 
-import groovy.util.AbstractFactory
-import groovy.util.FactoryBuilderSupport
+import org.mnode.ousia.OusiaBuilder
 
-import java.util.Map
+import ca.odell.glazedlists.GlazedLists
+import ca.odell.glazedlists.TreeList
+import ca.odell.glazedlists.TreeList.Format
 
-import ca.odell.glazedlists.EventList
-import ca.odell.glazedlists.SortedList
 
-/**
- * @author fortuna
- *
- */
-class SortedListFactory extends AbstractFactory {
+def list = new OusiaBuilder().treeList(GlazedLists.eventList([[node: 'A', value: 1], [node: 'A', value: 4], [node: 'B', value: 5], [node: 'A', value: 2], [node: 'B', value: 6], [node: 'B', value: 8]]),
+	 expansionModel: TreeList.NODES_START_EXPANDED, format: [
+        allowsChildren: {element -> true},
+        getComparator: {depth -> (depth == 1) ? {a, b -> a.node <=> b.node} as Comparator<?> : null},
+        getPath: {path, element ->
+			 println element
+			 path << element.node
+			 path << element
+		 }
+    ] as Format<?>)
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	Object newInstance(FactoryBuilderSupport builder, Object name, Object value, Map attributes) throws InstantiationException,
-			IllegalAccessException {
-
-		FactoryBuilderSupport.checkValueIsType(value, name, EventList)
-		Comparator<?> comparator = attributes.remove('comparator')
-
-		new SortedList<?>(value, comparator)
-	}
-
-}
+println list

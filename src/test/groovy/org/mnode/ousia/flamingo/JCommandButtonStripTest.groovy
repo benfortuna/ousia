@@ -29,37 +29,26 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package org.mnode.ousia
+package org.mnode.ousia.flamingo
 
-import groovy.util.AbstractFactory
-import groovy.util.FactoryBuilderSupport
+import java.awt.event.ActionListener
 
-import java.util.Map
+import javax.swing.JFrame
 
-import org.pushingpixels.flamingo.api.common.JCommandButtonStrip
-import org.pushingpixels.flamingo.api.common.JCommandButtonStrip.StripOrientation
+import org.mnode.ousia.OusiaBuilder
+import org.pushingpixels.flamingo.api.common.CommandButtonDisplayState
 
-class JCommandButtonStripFactory extends AbstractFactory {
 
-	@Override
-	Object newInstance(FactoryBuilderSupport builder, Object name, Object value, Map attributes) throws InstantiationException,
-			IllegalAccessException {
-
-		def commandButtonStrip
-		StripOrientation orientation = attributes.remove('orientation')
-		if (orientation) {
-			commandButtonStrip = new JCommandButtonStrip(orientation)
-		}
-		else {
-			commandButtonStrip = new JCommandButtonStrip()
-		}
-		commandButtonStrip
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	void setChild(FactoryBuilderSupport builder,  parent,  child) {
-		parent.add(child)
-	}
+new OusiaBuilder().edt {
+   frame(title: 'JCommandButtonStrip Test', size: [320, 240], show: true, defaultCloseOperation: JFrame.EXIT_ON_CLOSE) {
+	   flowLayout()
+	   
+	   resizableIcon('/find.svg', size: [32, 32], id: 'findIcon')
+	   
+	   commandButtonStrip(displayState: CommandButtonDisplayState.FIT_TO_ICON) {
+		   commandButton('Button 1')
+		   commandButton('Button 2', actionPerformed: { println 'Button 2 pressed' } as ActionListener)
+		   commandButton findIcon
+	   }
+   }
 }

@@ -29,9 +29,11 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package org.mnode.ousia
+package org.mnode.ousia.flamingo
 
-import javax.swing.JFrame;
+import javax.swing.JFrame
+
+import org.mnode.ousia.OusiaBuilder
 
 new OusiaBuilder().edt {
 	lookAndFeel('seaglass')

@@ -32,7 +32,7 @@
 /**
  * 
  */
-package org.mnode.ousia
+package org.mnode.ousia.flamingo
 
 import groovy.util.AbstractFactory
 import groovy.util.FactoryBuilderSupport

@@ -29,26 +29,36 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package org.mnode.ousia
+/**
+ * 
+ */
+package org.mnode.ousia.glazedlists
 
-import java.awt.event.ActionListener;
+import groovy.util.AbstractFactory
+import groovy.util.FactoryBuilderSupport
 
-import javax.swing.JFrame;
+import java.util.Map
 
-import org.pushingpixels.flamingo.api.common.CommandButtonDisplayState;
-import org.pushingpixels.flamingo.api.common.JCommandButtonStrip.StripOrientation;
+import ca.odell.glazedlists.EventList
+import ca.odell.glazedlists.SortedList
 
+/**
+ * @author fortuna
+ *
+ */
+class SortedListFactory extends AbstractFactory {
 
-new OusiaBuilder().edt {
-   frame(title: 'JCommandButtonStrip Test', size: [320, 240], show: true, defaultCloseOperation: JFrame.EXIT_ON_CLOSE) {
-	   flowLayout()
-	   
-	   resizableIcon('/find.svg', size: [32, 32], id: 'findIcon')
-	   
-	   commandButtonStrip(displayState: CommandButtonDisplayState.FIT_TO_ICON) {
-		   commandButton('Button 1')
-		   commandButton('Button 2', actionPerformed: { println 'Button 2 pressed' } as ActionListener)
-		   commandButton findIcon
-	   }
-   }
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	Object newInstance(FactoryBuilderSupport builder, Object name, Object value, Map attributes) throws InstantiationException,
+			IllegalAccessException {
+
+		FactoryBuilderSupport.checkValueIsType(value, name, EventList)
+		Comparator<?> comparator = attributes.remove('comparator')
+
+		new SortedList<?>(value, comparator)
+	}
+
 }
