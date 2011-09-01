@@ -114,8 +114,6 @@
 		<dependency>
 			<groupId>com.fifesoft</groupId>
 			<artifactId>rsyntaxtextarea</artifactId>
-			<version>1.4.1</version>
-			<type>jar</type>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
