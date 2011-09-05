@@ -74,11 +74,4 @@ public class JXStatusBarTracker extends ComponentTracker {
         getPreferences().putBoolean(getUniqueId() + ".visible", true);
     }
 
-    /**
-     * @return the saved visibility of the status bar.
-     */
-    public boolean isVisible() {
-        return getPreferences().getBoolean(getUniqueId() + ".visible", statusBar.isVisible());
-    }
-
 }
