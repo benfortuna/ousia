@@ -7,7 +7,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.mnode.ousia</groupId>
 	<artifactId>ousia</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 	<name>Ousia</name>
 	<description>Groovy bindings for Substance and other Swing technologies</description>
 	<inceptionYear>2010</inceptionYear>
