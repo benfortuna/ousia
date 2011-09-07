@@ -37,8 +37,6 @@ import java.awt.event.ComponentListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import javax.swing.JComponent;
@@ -54,12 +52,9 @@ public class ProgressLayerUI extends AbstractLayerUI<JComponent> implements Comp
 
 	private final JProgressBar progressBar;
 	
-	private final List<ProgressMonitor> monitors;
-	
 	public ProgressLayerUI() {
 		progressBar = new JProgressBar();
 		progressBar.setVisible(false);
-		monitors = new ArrayList<ProgressLayerUI.ProgressMonitor>();
 	}
 	
 	@Override
@@ -83,14 +78,10 @@ public class ProgressLayerUI extends AbstractLayerUI<JComponent> implements Comp
     }
     
     public void addMonitor(ProgressMonitor monitor) {
-    	if (!monitors.contains(monitor)) {
-    		monitors.add(monitor);
-    		monitor.addListener(this);
-    	}
+		monitor.addListener(this);
     }
     
     public void removeMonitor(ProgressMonitor monitor) {
-    	monitors.remove(monitor);
     	monitor.removeListener(this);
     }
     
