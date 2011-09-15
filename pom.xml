@@ -31,6 +31,9 @@
 			<id>modularity-releases</id>
 			<name>Modularity Maven Repository</name>
 			<url>http://m2.modularity.net.au/releases</url>
+            <releases>
+               <enabled>true</enabled>
+            </releases>
 			<snapshots>
 				<enabled>false</enabled>
 			</snapshots>
@@ -226,7 +229,7 @@
 			</plugin>
 
 			<plugin>
-				<groupId>com.google.code.maven-license-plugin</groupId>
+				<groupId>com.mycila.maven-license-plugin</groupId>
 				<artifactId>maven-license-plugin</artifactId>
 			</plugin>
 		</plugins>
