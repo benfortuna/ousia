@@ -129,6 +129,7 @@ class OusiaBuilder extends SwingBuilder {
 			registerBeanFactory 'styleSheet', StyleSheet
 			registerFactory 'styleSheetRule', new StyleSheetRuleFactory()
 			registerFactory 'paddedIcon', new PaddedIconFactory()
+			registerFactory 'fileTreePanel', new FileTreePanelFactory()
 		}
 		catch (Throwable e) {
 			log.warn 'Failed to register Ousia extras'

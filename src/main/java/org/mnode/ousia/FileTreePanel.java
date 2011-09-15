@@ -57,6 +57,8 @@ import org.mnode.ousia.util.FileComparator;
 
 /**
  * @author Kirill Grouchnikov
+ * 
+ * TODO: Support custom file roots; use concurrency for speed
  */
 public class FileTreePanel extends JPanel {
 	
