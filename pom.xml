@@ -2,7 +2,7 @@
 	<parent>
 		<artifactId>base-parent</artifactId>
 		<groupId>org.mnode.base</groupId>
-		<version>0.0.3-SNAPSHOT</version>
+		<version>0.0.4-SNAPSHOT</version>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.mnode.ousia</groupId>
@@ -47,22 +47,23 @@
 		</dependency>
 		
 		<dependency>
-			<groupId>net.java.dev.substance</groupId>
+			<groupId>com.github.insubstantial</groupId>
 			<artifactId>substance</artifactId>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
-			<groupId>net.java.dev.substance</groupId>
+			<groupId>com.github.insubstantial</groupId>
 			<artifactId>substance-swingx</artifactId>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
-			<groupId>net.java.dev.substance</groupId>
+			<groupId>org.swinglabs</groupId>
 			<artifactId>swingx</artifactId>
+			<version>1.6.1</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
-			<groupId>net.java.dev.substance</groupId>
+			<groupId>com.github.insubstantial</groupId>
 			<artifactId>trident</artifactId>
 			<scope>provided</scope>
 		</dependency>
@@ -131,9 +132,9 @@
 			</exclusions>
 		</dependency>
 		<dependency>
-			<groupId>net.java.dev.flamingo</groupId>
+			<groupId>com.github.insubstantial</groupId>
 			<artifactId>flamingo</artifactId>
-			<version>5.0</version>
+			<version>6.3</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
