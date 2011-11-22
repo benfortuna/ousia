@@ -1,8 +1,8 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<parent>
-		<artifactId>base-parent</artifactId>
-		<groupId>org.mnode.base</groupId>
-		<version>0.0.4-SNAPSHOT</version>
+		<artifactId>mnode-parent</artifactId>
+		<groupId>org.mnode</groupId>
+		<version>1.4-SNAPSHOT</version>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.mnode.ousia</groupId>
@@ -49,11 +49,13 @@
 		<dependency>
 			<groupId>com.github.insubstantial</groupId>
 			<artifactId>substance</artifactId>
+			<version>${substance.version}</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.github.insubstantial</groupId>
 			<artifactId>substance-swingx</artifactId>
+			<version>${substance.version}</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
@@ -65,17 +67,20 @@
 		<dependency>
 			<groupId>com.github.insubstantial</groupId>
 			<artifactId>trident</artifactId>
+			<version>${substance.version}</version>
 			<scope>provided</scope>
 		</dependency>
 		
 		<dependency>
 			<groupId>org.apache.xmlgraphics</groupId>
 			<artifactId>batik-awt-util</artifactId>
+			<version>${batik.version}</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.xmlgraphics</groupId>
 			<artifactId>batik-swing</artifactId>
+			<version>${batik.version}</version>
 			<scope>provided</scope>
 			<exclusions>
 				<exclusion>
@@ -87,6 +92,7 @@
 		<dependency>
 			<groupId>org.apache.xmlgraphics</groupId>
 			<artifactId>batik-transcoder</artifactId>
+			<version>${batik.version}</version>
 			<scope>provided</scope>
 		</dependency>
 		
@@ -117,6 +123,7 @@
 		<dependency>
 			<groupId>com.fifesoft</groupId>
 			<artifactId>rsyntaxtextarea</artifactId>
+			<version>${fifesoft.version}</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
@@ -281,4 +288,11 @@
 			</plugins>
 		</pluginManagement>
 	</build>
+
+	<properties>
+		<substance.version>7.0</substance.version>
+		<batik.version>1.7</batik.version>
+		<fifesoft.version>1.5.0</fifesoft.version>
+	</properties>
+	
 </project>
