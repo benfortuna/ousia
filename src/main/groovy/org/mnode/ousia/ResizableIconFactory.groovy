@@ -40,7 +40,8 @@ import groovy.util.FactoryBuilderSupport
 import java.awt.Dimension
 import java.util.Map
 
-import org.pushingpixels.flamingo.api.svg.SvgBatikResizableIcon
+import javax.swing.ImageIcon;
+
 
 /**
  * @author fortuna
@@ -62,7 +63,9 @@ class ResizableIconFactory extends AbstractFactory {
 			url = ResizableIconFactory.getResource(value)
 		}
 		Dimension size = attributes.remove('size')
-		SvgBatikResizableIcon.getSvgIcon(url, size)
+		// XXX: replace with svg salamander
+//		SvgBatikResizableIcon.getSvgIcon(url, size)
+		new ImageIcon(url)
 	}
 
 }

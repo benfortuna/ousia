@@ -49,7 +49,7 @@ MimeUtil.registerMimeDetector("eu.medsea.mimeutil.detector.ExtensionMimeDetector
 
 new OusiaBuilder().edt {
 //    lookAndFeel('substance-mariner')
-	lookAndFeel('gtk')
+//	lookAndFeel('gtk')
 	
     actions {
         action(id: 'openFileAction', name: 'Open', accelerator: shortcut('O'), closure: {
