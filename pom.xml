@@ -7,7 +7,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.mnode.ousia</groupId>
 	<artifactId>ousia</artifactId>
-	<version>0.0.2-SNAPSHOT</version>
+	<version>0.9-SNAPSHOT</version>
 	<name>Ousia</name>
 	<description>Groovy bindings for Substance and other Swing technologies</description>
 	<inceptionYear>2010</inceptionYear>
@@ -49,13 +49,13 @@
 		<dependency>
 			<groupId>com.github.insubstantial</groupId>
 			<artifactId>substance</artifactId>
-			<version>${substance.version}</version>
+			<version>${insubstantial.version}</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.github.insubstantial</groupId>
 			<artifactId>substance-swingx</artifactId>
-			<version>${substance.version}</version>
+			<version>${insubstantial.version}</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
@@ -67,10 +67,10 @@
 		<dependency>
 			<groupId>com.github.insubstantial</groupId>
 			<artifactId>trident</artifactId>
-			<version>${substance.version}</version>
+			<version>${insubstantial.version}</version>
 			<scope>provided</scope>
 		</dependency>
-		
+<!-- Removed Batik dependencies for now, may be re-added after support for svg icons is restored..
 		<dependency>
 			<groupId>org.apache.xmlgraphics</groupId>
 			<artifactId>batik-awt-util</artifactId>
@@ -95,7 +95,7 @@
 			<version>${batik.version}</version>
 			<scope>provided</scope>
 		</dependency>
-		
+ -->
 		<dependency>
 			<groupId>org.swinglabs</groupId>
 			<artifactId>jxlayer</artifactId>
@@ -141,13 +141,13 @@
 		<dependency>
 			<groupId>com.github.insubstantial</groupId>
 			<artifactId>flamingo</artifactId>
-			<version>7.0</version>
+			<version>${insubstantial.version}</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.github.insubstantial</groupId>
 			<artifactId>substance-flamingo</artifactId>
-			<version>7.0</version>
+			<version>${insubstantial.version}</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
@@ -290,7 +290,7 @@
 	</build>
 
 	<properties>
-		<substance.version>7.0</substance.version>
+		<insubstantial.version>7.0</insubstantial.version>
 		<batik.version>1.7</batik.version>
 		<fifesoft.version>1.5.0</fifesoft.version>
 	</properties>
