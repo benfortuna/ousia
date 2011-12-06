@@ -45,6 +45,7 @@ import java.awt.Insets
 import java.util.Locale
 import java.util.prefs.Preferences
 
+import javax.swing.JFrame
 import javax.swing.UIManager
 import javax.swing.text.html.StyleSheet
 
@@ -122,6 +123,16 @@ class OusiaBuilder extends SwingBuilder {
     OusiaBuilder(boolean init = true) {
         super(init)
     }
+	
+	def registerDefaultOverrides() {
+		try {
+			registerFactory 'fileChooser', new JFileChooserFactory()
+			registerFactory 'frame', new OusiaFrameFactory(klass: JFrame)
+		}
+		catch (Throwable e) {
+			log.warn 'Failed to register default overrides'
+		}
+	}
 
 	def registerOusiaExtras() {
 		try {
@@ -204,15 +215,6 @@ class OusiaBuilder extends SwingBuilder {
 		}
 		catch (Throwable e) {
 			log.warn 'Failed to register jxlayer components'
-		}
-	}
-	
-	def registerDefaultOverrides() {
-		try {
-			registerFactory 'fileChooser', new JFileChooserFactory()
-		}
-		catch (Throwable e) {
-			log.warn 'Failed to register default overrides'
 		}
 	}
 	
