@@ -2,7 +2,7 @@
 	<parent>
 		<artifactId>mnode-parent</artifactId>
 		<groupId>org.mnode</groupId>
-		<version>1.4</version>
+		<version>1.5</version>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.mnode.ousia</groupId>
@@ -14,6 +14,7 @@
 	<scm>
 		<connection>scm:hg:https://ousia.googlecode.com/hg/</connection>
 		<developerConnection>scm:hg:https://ousia.googlecode.com/hg/</developerConnection>
+		<url>https://code.google.com/p/ousia/source/browse/</url>
 	</scm>
 	
 	<repositories>
