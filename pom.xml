@@ -11,6 +11,13 @@
 	<name>Ousia</name>
 	<description>Groovy bindings for Substance and other Swing technologies</description>
 	<inceptionYear>2010</inceptionYear>
+	
+	<licenses>
+		<license>
+			<name>Ousia - License</name>
+			<url>${pom.url}/license.html</url>
+		</license>
+	</licenses>
 	<scm>
 		<connection>scm:hg:https://ousia.googlecode.com/hg/</connection>
 		<developerConnection>scm:hg:https://ousia.googlecode.com/hg/</developerConnection>
