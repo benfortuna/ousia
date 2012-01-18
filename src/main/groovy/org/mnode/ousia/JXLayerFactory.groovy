@@ -37,13 +37,21 @@ package org.mnode.ousia
 import groovy.util.AbstractFactory
 import groovy.util.FactoryBuilderSupport
 
+import java.awt.Frame
 import java.util.Map
 
 import javax.swing.JComponent
+import javax.swing.JSplitPane
 
 import org.jdesktop.jxlayer.JXLayer
 import org.jdesktop.jxlayer.plaf.LayerUI
-import org.mnode.ousia.tracker.TrackerRegistry
+import org.jdesktop.swingx.JXStatusBar
+import org.mnode.ousia.tracker.ComponentTracker
+import org.mnode.ousia.tracker.FrameTracker
+import org.mnode.ousia.tracker.JRibbonFrameTracker
+import org.mnode.ousia.tracker.JSplitPaneTracker
+import org.mnode.ousia.tracker.JXStatusBarTracker
+import org.pushingpixels.flamingo.api.ribbon.JRibbonFrame
 
 /**
  * @author fortuna
@@ -72,10 +80,23 @@ class JXLayerFactory extends AbstractFactory {
 	}
 	
 	void onNodeCompleted(FactoryBuilderSupport builder, Object parent, Object node) {
-		super.onNodeCompleted builder, parent, node
-		
 		if (builder.context.trackingEnabled) {
-			TrackerRegistry.instance.register node, builder.context.id
+			if (node.class.isAssignableFrom(JRibbonFrame.class)) {
+				JRibbonFrameTracker tracker = [node, builder.context.id]
+			}
+			else if (node.class.isAssignableFrom(Frame.class)) {
+				FrameTracker tracker = [node, builder.context.id]
+			}
+			else if (node.class.isAssignableFrom(JSplitPane.class)) {
+				JSplitPaneTracker tracker = [node, builder.context.id]
+			}
+			else if (node.class.isAssignableFrom(JXStatusBar.class)) {
+				JXStatusBarTracker tracker = [node, builder.context.id]
+			}
+			else {
+				ComponentTracker tracker = [node, builder.context.id]
+			}
 		}
+		super.onNodeCompleted builder, parent, node
 	}
 }

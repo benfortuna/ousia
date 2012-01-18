@@ -38,15 +38,15 @@ import org.pushingpixels.flamingo.api.common.CommandButtonDisplayState
 
 
 new OusiaBuilder().edt {
-   ribbonFrame(title: 'JRibbonFrame Test', size: [320, 240], show: true, defaultCloseOperation: JFrame.EXIT_ON_CLOSE) {
+   ribbonFrame(title: 'JRibbonFrame Test', size: [320, 240], show: true, defaultCloseOperation: JFrame.EXIT_ON_CLOSE, trackingEnabled: true) {
 	   flowLayout()
 	   
-	   resizableIcon('/find.svg', size: [32, 32], id: 'findIcon')
+//	   resizableIcon('/find.svg', size: [32, 32], id: 'findIcon')
 	   
 	   commandButtonStrip(displayState: CommandButtonDisplayState.FIT_TO_ICON) {
 		   commandButton('Button 1')
 		   commandButton('Button 2')
-		   commandButton findIcon
+//		   commandButton findIcon
 	   }
    }
 }

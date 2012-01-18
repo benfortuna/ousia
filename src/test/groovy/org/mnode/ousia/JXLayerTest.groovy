@@ -48,8 +48,11 @@ new OusiaBuilder().edt {
 		// set it as the locked effect
 		ui.lockedEffects = effect
 		
-		layer(ui) {
-			button(text: 'Click Me', actionPerformed: {ui.locked = true; println 'ui locked'})
+		layer(ui, trackingEnabled: true) {
+			splitPane {
+				button(constraints: 'left', text: 'Click Me', actionPerformed: {ui.locked = true; println 'ui locked'})
+				button(constraints: 'right', text: 'Me Too', actionPerformed: {ui.locked = true; println 'ui locked'})
+			}
 		}
 	}
 }

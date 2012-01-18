@@ -38,14 +38,12 @@ import java.awt.event.ComponentEvent;
  * @author Ben
  *
  */
-public class FrameTracker extends ComponentTracker {
-
-    private Frame frame;
+public class FrameTracker<T extends Frame> extends ComponentTracker<T> {
     
     /**
      * @param frame the frame to track
      */
-    public FrameTracker(Frame frame) {
+    public FrameTracker(T frame) {
         super(frame);
     }
 
@@ -53,9 +51,8 @@ public class FrameTracker extends ComponentTracker {
      * @param frame the frame to track
      * @param id an identifier for this tracker
      */
-    public FrameTracker(Frame frame, String id) {
+    public FrameTracker(T frame, String id) {
         super(frame, id);
-        this.frame = frame;
 //        if (isMaximised()) {
 //            frame.setExtendedState(Frame.MAXIMIZED_BOTH);
 //        }
@@ -73,7 +70,7 @@ public class FrameTracker extends ComponentTracker {
     	}
     	catch (InterruptedException ie) {
     	}
-        if (Frame.MAXIMIZED_BOTH == frame.getExtendedState()) {
+        if (Frame.MAXIMIZED_BOTH == getComponent().getExtendedState()) {
             // if frame is maximised don't update the saved location..
             return;
         }
@@ -85,7 +82,7 @@ public class FrameTracker extends ComponentTracker {
      */
     @Override
     public void componentResized(ComponentEvent e) {
-        if (Frame.MAXIMIZED_BOTH == frame.getExtendedState()) {
+        if (Frame.MAXIMIZED_BOTH == getComponent().getExtendedState()) {
             getPreferences().putBoolean(getUniqueId() + ".maximised", true);
             // if frame is maximised don't update the saved dimensions..
             return;
@@ -102,6 +99,6 @@ public class FrameTracker extends ComponentTracker {
      */
     public boolean isMaximised() {
         return getPreferences().getBoolean(getUniqueId() + ".maximised",
-                Frame.MAXIMIZED_BOTH == frame.getExtendedState());
+                Frame.MAXIMIZED_BOTH == getComponent().getExtendedState());
     }
 }

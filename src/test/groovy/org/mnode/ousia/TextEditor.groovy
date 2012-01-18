@@ -75,7 +75,7 @@ new OusiaBuilder().edt {
     
     fileChooser(id: 'chooser')
     
-    frame(title: 'Text Editor', size: [640, 480], show: true, locationRelativeTo: null, defaultCloseOperation: JFrame.EXIT_ON_CLOSE, id: 'frame') {
+    frame(title: 'Text Editor', size: [640, 480], show: true, locationRelativeTo: null, defaultCloseOperation: JFrame.EXIT_ON_CLOSE, id: 'frame', trackingEnabled: true) {
         menuBar {
             menu(text: "File", mnemonic: 'F') {
                 menuItem(openFileAction)

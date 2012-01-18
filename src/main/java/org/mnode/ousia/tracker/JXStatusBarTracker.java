@@ -39,9 +39,7 @@ import org.jdesktop.swingx.JXStatusBar;
  * @author Ben
  * 
  */
-public class JXStatusBarTracker extends ComponentTracker {
-
-    JXStatusBar statusBar;
+public class JXStatusBarTracker extends ComponentTracker<JXStatusBar> {
 
     /**
      * @param statusBar the status bar to track
@@ -56,7 +54,6 @@ public class JXStatusBarTracker extends ComponentTracker {
      */
     public JXStatusBarTracker(JXStatusBar statusBar, String id) {
         super(statusBar, id);
-        this.statusBar = statusBar;
         statusBar.setVisible(isVisible());
     }
 
@@ -73,5 +70,4 @@ public class JXStatusBarTracker extends ComponentTracker {
     public void componentShown(final ComponentEvent e) {
         getPreferences().putBoolean(getUniqueId() + ".visible", true);
     }
-
 }

@@ -41,7 +41,7 @@ import java.util.Map
 
 import javax.swing.JFrame
 
-import org.mnode.ousia.tracker.TrackerRegistry
+import org.mnode.ousia.tracker.FrameTracker
 
 /**
  * @author fortuna
@@ -68,10 +68,9 @@ class OusiaFrameFactory extends FrameFactory {
 	}
 
 	void onNodeCompleted(FactoryBuilderSupport builder, Object parent, Object node) {
-		super.onNodeCompleted builder, parent, node
-		
 		if (builder.context.trackingEnabled) {
-			TrackerRegistry.instance.register node, builder.context.id
+			FrameTracker<?> tracker = [node, builder.context.id]
 		}
+		super.onNodeCompleted builder, parent, node
 	}
 }

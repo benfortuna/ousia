@@ -41,13 +41,11 @@ import javax.swing.JSplitPane;
  * 
  * @author Ben Fortuna
  */
-public class JSplitPaneTracker extends ComponentTracker implements PropertyChangeListener {
+public class JSplitPaneTracker extends ComponentTracker<JSplitPane> implements PropertyChangeListener {
 
 //    private static final LogAdapter LOG = new AsyncLogAdapter(new JclAdapter(LogFactory.getLog(JSplitPaneTracker.class)));
 
 //    private static final LogEntry PROPERTY_CHANGED_LOG = new FormattedLogEntry(Level.Debug, "Property changed: %s");
-    
-    private JSplitPane pane;
 
     /**
      * Constructor made protected to ensure only instantiated by PrefsManager.
@@ -66,8 +64,6 @@ public class JSplitPaneTracker extends ComponentTracker implements PropertyChang
      */
     protected JSplitPaneTracker(JSplitPane pane, String id) {
         super(pane, id);
-
-        this.pane = pane;
         pane.setDividerLocation(getDividerLocation());
         pane.addPropertyChangeListener(this);
     }
@@ -80,7 +76,7 @@ public class JSplitPaneTracker extends ComponentTracker implements PropertyChang
 //        LOG.log(PROPERTY_CHANGED_LOG, e.getPropertyName());
 
         if ("dividerLocation".equals(e.getPropertyName())) {
-            getPreferences().putInt(getUniqueId() + "." + e.getPropertyName(), pane.getDividerLocation());
+            getPreferences().putInt(getUniqueId() + "." + e.getPropertyName(), getComponent().getDividerLocation());
         }
     }
 
@@ -88,6 +84,6 @@ public class JSplitPaneTracker extends ComponentTracker implements PropertyChang
      * @return the last known divider location for the split pane
      */
     public int getDividerLocation() {
-        return getPreferences().getInt(getUniqueId() + ".dividerLocation", pane.getDividerLocation());
+        return getPreferences().getInt(getUniqueId() + ".dividerLocation", getComponent().getDividerLocation());
     }
 }

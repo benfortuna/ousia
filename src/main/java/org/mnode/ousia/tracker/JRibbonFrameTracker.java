@@ -36,20 +36,16 @@ import java.beans.PropertyChangeListener;
 
 import org.pushingpixels.flamingo.api.ribbon.JRibbonFrame;
 
-public class JRibbonFrameTracker extends FrameTracker implements PropertyChangeListener {
-
-	private final JRibbonFrame ribbonFrame;
+public class JRibbonFrameTracker extends FrameTracker<JRibbonFrame> implements PropertyChangeListener {
 	
-	public JRibbonFrameTracker(JRibbonFrame component) {
-		super(component);
-		this.ribbonFrame = component;
+	public JRibbonFrameTracker(JRibbonFrame ribbonFrame) {
+		super(ribbonFrame);
 		ribbonFrame.getRibbon().setMinimized(isMinimized());
 		ribbonFrame.getRibbon().addPropertyChangeListener(this);
 	}
 
-	public JRibbonFrameTracker(JRibbonFrame component, String id) {
-		super(component, id);
-		this.ribbonFrame = component;
+	public JRibbonFrameTracker(JRibbonFrame ribbonFrame, String id) {
+		super(ribbonFrame, id);
 		ribbonFrame.getRibbon().setMinimized(isMinimized());
 		ribbonFrame.getRibbon().addPropertyChangeListener(this);
 	}
@@ -57,11 +53,11 @@ public class JRibbonFrameTracker extends FrameTracker implements PropertyChangeL
 	@Override
     public void propertyChange(PropertyChangeEvent e) {
         if ("minimized".equals(e.getPropertyName())) {
-    		getPreferences().putBoolean(getUniqueId() + ".minimized", ribbonFrame.getRibbon().isMinimized());
+    		getPreferences().putBoolean(getUniqueId() + ".minimized", getComponent().getRibbon().isMinimized());
         }
 	}
 	
 	public boolean isMinimized() {
-		return getPreferences().getBoolean(getUniqueId() + ".minimized", ribbonFrame.getRibbon().isMinimized());
+		return getPreferences().getBoolean(getUniqueId() + ".minimized", getComponent().getRibbon().isMinimized());
 	}
 }

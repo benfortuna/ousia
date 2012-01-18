@@ -37,6 +37,7 @@ import java.awt.Point;
 import java.awt.Toolkit;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
+import java.util.WeakHashMap;
 import java.util.prefs.Preferences;
 
 /**
@@ -44,11 +45,13 @@ import java.util.prefs.Preferences;
  * 
  * @author Ben Fortuna
  */
-public class ComponentTracker implements ComponentListener {
+public class ComponentTracker<T extends Component> implements ComponentListener {
 
+	protected static final WeakHashMap<Component, ComponentTracker<?>> trackers = new WeakHashMap<Component, ComponentTracker<?>>();
+	
     private Preferences preferences;
 
-    private Component component;
+    private T component;
 
     private String id;
 
@@ -58,7 +61,7 @@ public class ComponentTracker implements ComponentListener {
      * @param component
      *            a component to monitor for preference changes
      */
-    public ComponentTracker(final Component component) {
+    public ComponentTracker(final T component) {
         this(component, component.getName());
     }
 
@@ -70,7 +73,7 @@ public class ComponentTracker implements ComponentListener {
      * @param id
      *            the identifier of a specific component
      */
-    public ComponentTracker(final Component component, final String id) {
+    public ComponentTracker(final T component, final String id) {
         this.component = component;
         this.id = id;
 
@@ -81,6 +84,7 @@ public class ComponentTracker implements ComponentListener {
         component.setVisible(isVisible());
 
         component.addComponentListener(this);
+        trackers.put(component, this);
     }
 
     /**
@@ -152,7 +156,7 @@ public class ComponentTracker implements ComponentListener {
     /**
      * @return Returns the component.
      */
-    public final Component getComponent() {
+    public final T getComponent() {
         return component;
     }
 
