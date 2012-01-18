@@ -36,6 +36,7 @@ import groovy.swing.LookAndFeelHelper
 import groovy.swing.SwingBuilder
 import groovy.swing.factory.LayoutFactory
 import groovy.swing.factory.ScrollPaneFactory
+import groovy.swing.factory.SplitPaneFactory
 import groovy.swing.factory.TextArgWidgetFactory
 import groovy.util.logging.Slf4j
 
@@ -43,6 +44,7 @@ import java.awt.Component
 import java.awt.Cursor
 import java.awt.Insets
 import java.util.Locale
+import java.util.Map
 import java.util.prefs.Preferences
 
 import javax.swing.JFrame
@@ -70,6 +72,7 @@ import org.mnode.ousia.flamingo.RibbonTaskFactory
 import org.mnode.ousia.glazedlists.FilterListFactory
 import org.mnode.ousia.glazedlists.SortedListFactory
 import org.mnode.ousia.glazedlists.TreeListFactory
+import org.mnode.ousia.tracker.JSplitPaneTracker
 import org.noos.xing.mydoggy.plaf.MyDoggyToolWindowManager
 import org.pushingpixels.flamingo.api.bcb.core.BreadcrumbFileSelector
 import org.pushingpixels.flamingo.api.common.JCommandButton
@@ -141,6 +144,20 @@ class OusiaBuilder extends SwingBuilder {
 			registerFactory 'styleSheetRule', new StyleSheetRuleFactory()
 			registerFactory 'paddedIcon', new PaddedIconFactory()
 			registerFactory 'fileTreePanel', new FileTreePanelFactory()
+			/*
+			SplitPaneFactory.metaClass.newInstance = { builder, name, value, attributes ->
+				builder.context.trackingEnabled = attributes.remove('trackingEnabled')
+				builder.context.id = attributes['id']
+				super.newInstance(builder, name, value, attributes)
+			}
+			SplitPaneFactory.metaClass.onNodeCompleted = { builder, parent, node ->
+				if (builder.context.trackingEnabled) {
+					JSplitPaneTracker tracker = [node, builder.context.id]
+				}
+				super.onNodeCompleted(builder, parent, node)
+			}
+			registerFactory 'splitPane', new SplitPaneFactory()
+			*/
 		}
 		catch (Throwable e) {
 			log.warn 'Failed to register Ousia extras'
