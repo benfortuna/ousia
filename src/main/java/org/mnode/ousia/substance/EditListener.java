@@ -31,14 +31,14 @@
  */
 package org.mnode.ousia.substance;
 
+import static org.pushingpixels.substance.api.SubstanceLookAndFeel.WINDOW_MODIFIED;
+
 import javax.swing.JComponent;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.event.UndoableEditEvent;
 import javax.swing.undo.UndoManager;
 import javax.swing.undo.UndoableEdit;
-
-import org.pushingpixels.substance.api.SubstanceLookAndFeel;
 
 /**
  * @author Ben
@@ -56,7 +56,7 @@ public class EditListener extends UndoManager implements DocumentListener {
     
     @Override
     public void undoableEditHappened(UndoableEditEvent e) {
-        component.putClientProperty(SubstanceLookAndFeel.WINDOW_MODIFIED, true);
+        component.putClientProperty(WINDOW_MODIFIED, true);
         super.undoableEditHappened(e);
     }
     
@@ -65,10 +65,10 @@ public class EditListener extends UndoManager implements DocumentListener {
      */
     public void changedUpdate(DocumentEvent e) {
         if (canUndoAny()) {
-            component.putClientProperty(SubstanceLookAndFeel.WINDOW_MODIFIED, true);
+            component.putClientProperty(WINDOW_MODIFIED, true);
         }
         else {
-            component.putClientProperty(SubstanceLookAndFeel.WINDOW_MODIFIED, false);
+            component.putClientProperty(WINDOW_MODIFIED, false);
         }
     }
 
@@ -77,10 +77,10 @@ public class EditListener extends UndoManager implements DocumentListener {
      */
     public void insertUpdate(DocumentEvent e) {
         if (canUndoAny()) {
-            component.putClientProperty(SubstanceLookAndFeel.WINDOW_MODIFIED, true);
+            component.putClientProperty(WINDOW_MODIFIED, true);
         }
         else {
-            component.putClientProperty(SubstanceLookAndFeel.WINDOW_MODIFIED, false);
+            component.putClientProperty(WINDOW_MODIFIED, false);
         }
     }
 
@@ -89,10 +89,10 @@ public class EditListener extends UndoManager implements DocumentListener {
      */
     public void removeUpdate(DocumentEvent e) {
         if (canUndoAny()) {
-            component.putClientProperty(SubstanceLookAndFeel.WINDOW_MODIFIED, true);
+            component.putClientProperty(WINDOW_MODIFIED, true);
         }
         else {
-            component.putClientProperty(SubstanceLookAndFeel.WINDOW_MODIFIED, false);
+            component.putClientProperty(WINDOW_MODIFIED, false);
         }
     }
     
