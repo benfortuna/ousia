@@ -250,7 +250,6 @@
         </dependency>
 		
 		<!-- Shared tool resources -->
-<!--
         <dependency>
             <groupId>${project.parent.groupId}</groupId>
             <artifactId>mnode-tools</artifactId>
@@ -259,7 +258,6 @@
             <type>zip</type>
             <scope>provided</scope>
         </dependency>
--->
 	</dependencies>
 
 	<build>
