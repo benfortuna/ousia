@@ -2,7 +2,7 @@
 	<parent>
 		<artifactId>mnode-parent</artifactId>
 		<groupId>org.mnode</groupId>
-		<version>1.12</version>
+		<version>1.13-SNAPSHOT</version>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.mnode.ousia</groupId>
@@ -250,6 +250,7 @@
         </dependency>
 		
 		<!-- Shared tool resources -->
+<!--
         <dependency>
             <groupId>${project.parent.groupId}</groupId>
             <artifactId>mnode-tools</artifactId>
@@ -258,6 +259,7 @@
             <type>zip</type>
             <scope>provided</scope>
         </dependency>
+-->
 	</dependencies>
 
 	<build>
@@ -285,6 +287,7 @@
                 </configuration>
             </plugin>
 			
+<!--
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-dependency-plugin</artifactId>
@@ -304,6 +307,7 @@
 					</execution>
 				</executions>
 			</plugin>
+-->
 		</plugins>
 	</build>
 
