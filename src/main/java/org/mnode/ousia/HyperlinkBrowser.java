@@ -91,7 +91,7 @@ public class HyperlinkBrowser implements HyperlinkListener {
 		this.feedback = feedback;
 	}
 
-	public static interface HyperlinkFeedback {
+	public interface HyperlinkFeedback {
     	
     	void show(URL url);
     	

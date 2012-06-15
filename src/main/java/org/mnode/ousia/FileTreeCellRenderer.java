@@ -47,9 +47,10 @@ public class FileTreeCellRenderer extends DefaultTreeCellRenderer {
 	
 	private final FileSystemView fsv = FileSystemView.getFileSystemView();
     	    
-    public Component getTreeCellRendererComponent(JTree tree, Object value, boolean selected, boolean expanded, boolean leaf, int row, boolean hasFocus) {
+    public Component getTreeCellRendererComponent(JTree tree, Object value, boolean selected,
+    		boolean expanded, boolean leaf, int row, boolean hasFocus) {
         super.getTreeCellRendererComponent(tree, value, selected, expanded, leaf, row, hasFocus);
-        File file = (File) value;
+        final File file = (File) value;
         if (file.exists()) {
             setIcon(fsv.getSystemIcon(file));
             setText(fsv.getSystemDisplayName(file));

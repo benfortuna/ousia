@@ -69,7 +69,7 @@ public class FileListCellRenderer extends DefaultListCellRenderer {
         
         super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
         
-        File file = (File) value;
+        final File file = (File) value;
         if (file.exists()) {
             setIcon(fsv.getSystemIcon(file));
             if (showPath) {

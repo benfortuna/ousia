@@ -59,7 +59,7 @@ public class StatusLayerUI extends AbstractLayerUI<JComponent> implements Compon
 	public void installUI(JComponent c) {
 		super.installUI(c);
 		@SuppressWarnings("unchecked")
-		JXLayer<JComponent> l = (JXLayer<JComponent>) c;
+		final JXLayer<JComponent> l = (JXLayer<JComponent>) c;
         l.getGlassPane().setLayout(null);
         l.getGlassPane().add(statusPane);
         l.addComponentListener(this);
@@ -69,7 +69,7 @@ public class StatusLayerUI extends AbstractLayerUI<JComponent> implements Compon
     public void uninstallUI(JComponent c) {
         super.uninstallUI(c);
         @SuppressWarnings("unchecked")
-		JXLayer<JComponent> l = (JXLayer<JComponent>) c;
+        final JXLayer<JComponent> l = (JXLayer<JComponent>) c;
         l.getGlassPane().setLayout(new FlowLayout());
         l.getGlassPane().remove(statusPane);
         l.removeComponentListener(this);

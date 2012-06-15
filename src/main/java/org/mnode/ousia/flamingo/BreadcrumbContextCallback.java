@@ -56,13 +56,16 @@ public class BreadcrumbContextCallback extends BreadcrumbBarCallBack<BreadcrumbC
 	}
 	
 	@Override
-	public List<StringValuePair<BreadcrumbContext>> getPathChoices(List<BreadcrumbItem<BreadcrumbContext>> path) throws BreadcrumbBarException {
-		final List<StringValuePair<BreadcrumbContext>> pathChoices = new ArrayList<StringValuePair<BreadcrumbContext>>();
+	public List<StringValuePair<BreadcrumbContext>> getPathChoices(List<BreadcrumbItem<BreadcrumbContext>> path) {
+		final List<StringValuePair<BreadcrumbContext>> pathChoices = 
+				new ArrayList<StringValuePair<BreadcrumbContext>>();
 		try {
 			if (path == null) {
 				for (BreadcrumbContext child : rootContext.getChildren()) {
-//					pathChoices.add(new StringValuePair<BreadcrumbContext>(result.getName(), result));
-					final StringValuePair<BreadcrumbContext> pathChoice = new StringValuePair<BreadcrumbContext>(child.getName(), child);
+//					pathChoices.add(new StringValuePair<BreadcrumbContext>(
+//					result.getName(), result));
+					final StringValuePair<BreadcrumbContext> pathChoice = 
+							new StringValuePair<BreadcrumbContext>(child.getName(), child);
 					pathChoice.set("icon", child.getIcon());
 					pathChoices.add(pathChoice);
 				}
@@ -74,7 +77,9 @@ public class BreadcrumbContextCallback extends BreadcrumbBarCallBack<BreadcrumbC
 				final BreadcrumbContext lastPathResult = path.get(path.size() - 1).getData();
 				if (!lastPathResult.isLeaf()) {
 					for (BreadcrumbContext child : lastPathResult.getChildren()) {
-						final StringValuePair<BreadcrumbContext> pathChoice = new StringValuePair<BreadcrumbContext>(child.getName(), child);
+						final StringValuePair<BreadcrumbContext> pathChoice = 
+								new StringValuePair<BreadcrumbContext>(child.getName(),
+										child);
 						pathChoice.set("icon", child.getIcon());
 						pathChoices.add(pathChoice);
 					}

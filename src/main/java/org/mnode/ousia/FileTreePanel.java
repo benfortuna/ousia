@@ -99,8 +99,8 @@ public class FileTreePanel extends JPanel {
 		public Component getTreeCellRendererComponent(JTree tree, Object value,
 				boolean sel, boolean expanded, boolean leaf, int row,
 				boolean hasFocus) {
-			FileTreeNode ftn = (FileTreeNode) value;
-			File file = ftn.file;
+			final FileTreeNode ftn = (FileTreeNode) value;
+			final File file = ftn.file;
 			String filename = "";
 			if (file != null) {
 				if (ftn.isFileSystemRoot) {
@@ -116,7 +116,7 @@ public class FileTreePanel extends JPanel {
 					filename = file.getName();
 				}
 			}
-			JLabel result = (JLabel) super.getTreeCellRendererComponent(tree,
+			final JLabel result = (JLabel) super.getTreeCellRendererComponent(tree,
 					filename, sel, expanded, leaf, row, hasFocus);
 			if (file != null && file.exists()) {
 				Icon icon = this.iconCache.get(filename);
@@ -178,8 +178,9 @@ public class FileTreePanel extends JPanel {
 			if (children != null) {
 				Arrays.sort(children, COMPARATOR);
 			}
-			if (this.children == null)
+			if (this.children == null) {
 				this.children = new File[0];
+			}
 		}
 
 		/**
@@ -262,10 +263,11 @@ public class FileTreePanel extends JPanel {
 		 * @see javax.swing.tree.TreeNode#getIndex(javax.swing.tree.TreeNode)
 		 */
 		public int getIndex(TreeNode node) {
-			FileTreeNode ftn = (FileTreeNode) node;
+			final FileTreeNode ftn = (FileTreeNode) node;
 			for (int i = 0; i < this.children.length; i++) {
-				if (ftn.file.equals(this.children[i]))
+				if (ftn.file.equals(this.children[i])) {
 					return i;
+				}
 			}
 			return -1;
 		}
@@ -300,8 +302,8 @@ public class FileTreePanel extends JPanel {
 	public FileTreePanel() {
 		this.setLayout(new BorderLayout());
 
-		File[] roots = File.listRoots();
-		FileTreeNode rootTreeNode = new FileTreeNode(roots);
+		final File[] roots = File.listRoots();
+		final FileTreeNode rootTreeNode = new FileTreeNode(roots);
 		this.tree = new JTree(rootTreeNode);
 		this.tree.setCellRenderer(new FileTreeCellRenderer());
 		this.tree.setRootVisible(false);
@@ -313,7 +315,7 @@ public class FileTreePanel extends JPanel {
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
-				JFrame frame = new JFrame("File tree");
+				final JFrame frame = new JFrame("File tree");
 				frame.setSize(500, 400);
 				frame.setLocationRelativeTo(null);
 				frame.add(new FileTreePanel());

@@ -53,7 +53,9 @@ public class DialogExceptionHandler implements UncaughtExceptionHandler {
 		
 		final String title = "Error";
 		final String basicErrorMessage = exception.getMessage();
-		final String detailedErrorMessage = String.format("<html><body>Unexpected error in thead <em>%s</em>: %s</body></html>", thread, exception);
+		final String detailedErrorMessage = String.format(
+				"<html><body>Unexpected error in thead <em>%s</em>: %s</body></html>",
+				thread, exception);
 		final String category = thread.getName();
 		
 		final ErrorInfo error = new ErrorInfo(title, basicErrorMessage, detailedErrorMessage,

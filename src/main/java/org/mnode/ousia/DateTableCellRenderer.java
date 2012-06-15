@@ -59,7 +59,8 @@ public class DateTableCellRenderer implements TableCellRenderer {
     public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus,
             int row, int column) {
 
-        final Component renderer = parent.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+        final Component renderer = parent.getTableCellRendererComponent(table, value,
+        		isSelected, hasFocus, row, column);
         if (value instanceof Date) {
             ((DefaultTableCellRenderer) renderer).setText(df.format((Date) value));
         }

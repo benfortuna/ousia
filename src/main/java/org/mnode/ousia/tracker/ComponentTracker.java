@@ -47,7 +47,8 @@ import java.util.prefs.Preferences;
  */
 public class ComponentTracker<T extends Component> implements ComponentListener {
 
-	protected static final WeakHashMap<Component, ComponentTracker<?>> trackers = new WeakHashMap<Component, ComponentTracker<?>>();
+	protected static final WeakHashMap<Component, ComponentTracker<?>> TRACKERS =
+			new WeakHashMap<Component, ComponentTracker<?>>();
 	
     private Preferences preferences;
 
@@ -84,7 +85,7 @@ public class ComponentTracker<T extends Component> implements ComponentListener 
         component.setVisible(isVisible());
 
         component.addComponentListener(this);
-        trackers.put(component, this);
+        TRACKERS.put(component, this);
     }
 
     /**
@@ -135,7 +136,7 @@ public class ComponentTracker<T extends Component> implements ComponentListener 
      * @return a point specifying a location
      */
     public final Point getLocation() {
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+    	final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         return new Point(Math.min(screenSize.width - getSize().width, getPreferences().getInt(getUniqueId() + ".x",
                 component.getLocation().x)), Math.min(screenSize.height - getSize().height, getPreferences().getInt(
                 getUniqueId() + ".y", component.getLocation().y)));
@@ -147,7 +148,7 @@ public class ComponentTracker<T extends Component> implements ComponentListener 
      * @return a dimension specifying a size
      */
     public final Dimension getSize() {
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+    	final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         return new Dimension(Math.min(screenSize.width, getPreferences().getInt(getUniqueId() + ".width",
                 component.getSize().width)), Math.min(screenSize.height, getPreferences().getInt(
                 getUniqueId() + ".height", component.getSize().height)));

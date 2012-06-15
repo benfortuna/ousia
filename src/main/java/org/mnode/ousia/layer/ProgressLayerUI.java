@@ -61,7 +61,7 @@ public class ProgressLayerUI extends AbstractLayerUI<JComponent> implements Comp
 	public void installUI(JComponent c) {
 		super.installUI(c);
 		@SuppressWarnings("unchecked")
-		JXLayer<JComponent> l = (JXLayer<JComponent>) c;
+		final JXLayer<JComponent> l = (JXLayer<JComponent>) c;
         l.getGlassPane().setLayout(null);
         l.getGlassPane().add(progressBar);
         l.addComponentListener(this);
@@ -71,7 +71,7 @@ public class ProgressLayerUI extends AbstractLayerUI<JComponent> implements Comp
     public void uninstallUI(JComponent c) {
         super.uninstallUI(c);
         @SuppressWarnings("unchecked")
-		JXLayer<JComponent> l = (JXLayer<JComponent>) c;
+        final JXLayer<JComponent> l = (JXLayer<JComponent>) c;
         l.getGlassPane().setLayout(new FlowLayout());
         l.getGlassPane().remove(progressBar);
         l.removeComponentListener(this);
@@ -94,7 +94,8 @@ public class ProgressLayerUI extends AbstractLayerUI<JComponent> implements Comp
 				progressBar.setMinimum(monitor.getMinimum());
 				progressBar.setMaximum(monitor.getMaximum());
 		    	progressBar.setValue(monitor.getValue());
-		    	progressBar.setToolTipText(String.format("%s: %s/%s", monitor.getName(), monitor.getValue(), monitor.getMaximum()));
+		    	progressBar.setToolTipText(String.format("%s: %s/%s", monitor.getName(),
+		    			monitor.getValue(), monitor.getMaximum()));
 		    	if (monitor.getValue() > monitor.getMinimum() && monitor.getValue() < monitor.getMaximum()) {
 		    		if (!progressBar.isVisible()) {
 		        		progressBar.setVisible(true);

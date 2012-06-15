@@ -58,6 +58,7 @@ public class JRibbonFrameTracker extends FrameTracker<JRibbonFrame> implements P
 	}
 	
 	public boolean isMinimized() {
-		return getPreferences().getBoolean(getUniqueId() + ".minimized", getComponent().getRibbon().isMinimized());
+		return getPreferences().getBoolean(getUniqueId() + ".minimized",
+				getComponent().getRibbon().isMinimized());
 	}
 }

@@ -43,7 +43,8 @@ import javax.swing.JSplitPane;
  */
 public class JSplitPaneTracker extends ComponentTracker<JSplitPane> implements PropertyChangeListener {
 
-//    private static final LogAdapter LOG = new AsyncLogAdapter(new JclAdapter(LogFactory.getLog(JSplitPaneTracker.class)));
+//    private static final LogAdapter LOG = new AsyncLogAdapter(new JclAdapter(
+//	LogFactory.getLog(JSplitPaneTracker.class)));
 
 //    private static final LogEntry PROPERTY_CHANGED_LOG = new FormattedLogEntry(Level.Debug, "Property changed: %s");
 
