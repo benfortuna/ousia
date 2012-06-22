@@ -23,8 +23,9 @@
 		<developerConnection>scm:hg:https://ousia.googlecode.com/hg</developerConnection>
 		<url>https://code.google.com/p/ousia/source/browse</url>
 	</scm>
-<!--	
+	
 	<repositories>
+<!--
 		<repository>
 	        <id>micronode-snapshots</id>
 	        <url>http://build.mnode.org/snapshots</url>
@@ -35,6 +36,7 @@
 	          <enabled>true</enabled>
 	        </snapshots>        
 	     </repository>
+-->
 		<repository>
 			<id>modularity-releases</id>
 			<name>Modularity Maven Repository</name>
@@ -47,7 +49,7 @@
 			</snapshots>
 		</repository>
 	</repositories>
--->
+
 	<dependencies>
 		<dependency>
 			<groupId>org.codehaus.groovy</groupId>
