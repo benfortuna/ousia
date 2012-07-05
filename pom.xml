@@ -69,9 +69,9 @@
 			<optional>true</optional>
 		</dependency>
 		<dependency>
-			<groupId>org.swinglabs</groupId>
+			<groupId>org.swinglabs.swingx</groupId>
 			<artifactId>swingx-core</artifactId>
-			<version>1.6.2-2</version>
+			<version>1.6.3</version>
 			<optional>true</optional>
 		</dependency>
 		<dependency>
@@ -121,7 +121,7 @@
 		<dependency>
 			<groupId>org.divxdede</groupId>
 			<artifactId>jbusycomponent</artifactId>
-			<version>1.1</version>
+			<version>1.2.2</version>
 			<optional>true</optional>
 			<exclusions>
 				<exclusion>
@@ -163,7 +163,7 @@
 		<dependency>
 			<groupId>com.seaglasslookandfeel</groupId>
 			<artifactId>seaglasslookandfeel</artifactId>
-			<version>0.1.7.3</version>
+			<version>0.2</version>
 			<optional>true</optional>
 		</dependency>
 		<dependency>
@@ -247,7 +247,7 @@
         <dependency>
         	<groupId>commons-io</groupId>
         	<artifactId>commons-io</artifactId>
-        	<version>2.1</version>
+        	<version>2.3</version>
         	<scope>test</scope>
         </dependency>
 		
@@ -286,9 +286,9 @@
 	</build>
 
 	<properties>
-		<insubstantial.version>7.0</insubstantial.version>
+		<insubstantial.version>7.1</insubstantial.version>
 		<batik.version>1.7</batik.version>
-		<fifesoft.version>1.5.0</fifesoft.version>
+		<fifesoft.version>2.0.2</fifesoft.version>
 	</properties>
 	
 </project>
