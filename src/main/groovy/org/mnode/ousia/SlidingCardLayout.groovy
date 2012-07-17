@@ -55,7 +55,8 @@ import org.pushingpixels.trident.ease.Sine
 
 class SlidingCardLayout extends CardLayout {
 
-    private final WeakHashMap componentNames = []
+//    private final WeakHashMap componentNames = []
+	def cards = []
     
     private JViewport viewport = []
     
@@ -69,10 +70,16 @@ class SlidingCardLayout extends CardLayout {
     
     @Override
     public void addLayoutComponent(Component component, Object obj) {
-        componentNames.put(component, obj)
+//        componentNames.put(component, obj)
+		cards << [comp: component, name: obj]
         super.addLayoutComponent(component, obj);
     }
     
+	public void removeLayoutComponent(Component component) {
+		super.removeLayoutComponent(component)
+		cards.remove(cards.find { it.comp == component})
+	}
+	
     private Component currentComponent(Container container) {
         for (i in 0..(container.componentCount - 1)) {
             if (container.getComponent(i).showing) {
@@ -84,23 +91,72 @@ class SlidingCardLayout extends CardLayout {
     
     @Override
     public void show(Container container, String id) {
-        def c = componentNames.entrySet().find { it.value == id}.key
-        Image transitionImage = createTransitionImage(currentComponent(container), c)
-	
-    	ImageIcon imageIcon = []
-        imageIcon.image = transitionImage
-			
-		JLabel imageLabel = [imageIcon]
-        viewport.view = imageLabel
-        slidingTimeline.resetDoneFlag()
-        slidingTimeline.addPropertyToInterpolate('viewPosition', viewport.viewPosition, new Point(viewport.viewPosition.x + transitionImage.getWidth() / 2 as int, viewport.viewPosition.y as int))
-        slidingTimeline.addCallback(new ShowCallback(container: container, id: id))
-        
-        container.add(viewport, '__transition__')
-        super.show(container, '__transition__')
-        slidingTimeline.play()
+//        def c = componentNames.entrySet().find { it.value == id}.key
+        def c = cards.find { it.name == id}.comp
+        animate(container, currentComponent(container), c)
+//        Image transitionImage = createTransitionImage(currentComponent(container), c)
+//	
+//    	ImageIcon imageIcon = []
+//        imageIcon.image = transitionImage
+//			
+//		JLabel imageLabel = [imageIcon]
+//        viewport.view = imageLabel
+//        slidingTimeline.resetDoneFlag()
+//        slidingTimeline.addPropertyToInterpolate('viewPosition', viewport.viewPosition, new Point(viewport.viewPosition.x + transitionImage.getWidth() / 2 as int, viewport.viewPosition.y as int))
+//        slidingTimeline.addCallback(new ShowCallback(container: container, id: id))
+//        
+//        container.add(viewport, '__transition__')
+//        super.show(container, '__transition__')
+//        slidingTimeline.play()
     }
     
+	@Override
+	public void next(Container container) {
+		def from = currentComponent(container)
+		def to = cards[cards.indexOf(cards.find { it.comp == from}) + 1].comp
+        animate(container, from, to)
+//		super.next(container);
+	}
+	
+	@Override
+	public void previous(Container container) {
+		def from = currentComponent(container)
+		def to = cards[cards.indexOf(cards.find { it.comp == from}) - 1].comp
+		animate(container, from, to, true)
+//		super.next(container);
+	}
+
+	private void animate(Container container, Component from, Component to, boolean reverse = false) {
+		Image transitionImage
+		if (reverse) {
+			transitionImage = createTransitionImage(to, from)
+		}
+		else {
+			transitionImage = createTransitionImage(from, to)
+		}
+		
+		ImageIcon imageIcon = []
+		imageIcon.image = transitionImage
+			
+		JLabel imageLabel = [imageIcon]
+		viewport.view = imageLabel
+		if (reverse) {
+			viewport.viewPosition = new Point(viewport.viewPosition.x + transitionImage.getWidth() / 2 as int, viewport.viewPosition.y as int)
+		}
+		slidingTimeline.resetDoneFlag()
+		if (reverse) {
+			slidingTimeline.addPropertyToInterpolate('viewPosition', viewport.viewPosition, new Point(viewport.viewPosition.x - transitionImage.getWidth() / 2 as int, viewport.viewPosition.y as int))
+		}
+		else {
+			slidingTimeline.addPropertyToInterpolate('viewPosition', viewport.viewPosition, new Point(viewport.viewPosition.x + transitionImage.getWidth() / 2 as int, viewport.viewPosition.y as int))
+		}
+		slidingTimeline.addCallback(new ShowCallback(container: container, id: cards.find { it.comp == to}.name))
+		
+		container.add(viewport, '__transition__')
+		super.show(container, '__transition__')
+		slidingTimeline.play()
+	}
+	
     private void internalShow(Container container, String id) {
         super.show(container, id)
     }
@@ -122,8 +178,8 @@ class SlidingCardLayout extends CardLayout {
         Container container
         String id
         
-        void onTimelineStateChanged(TimelineState arg0, TimelineState arg1, float arg2, float arg3) {
-            if (arg1 == TimelineState.DONE) {
+        void onTimelineStateChanged(TimelineState fromState, TimelineState toState, float arg2, float arg3) {
+            if (toState == TimelineState.DONE) {
                 SlidingCardLayout.this.internalShow(container, id);
                 container.remove(SlidingCardLayout.this.viewport)
                 slidingTimeline.removeCallback this

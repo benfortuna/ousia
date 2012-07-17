@@ -48,16 +48,26 @@ swing.edt {
 			panel(constraints: 'button1') {
 				borderLayout()
 				textArea()
-				button(text: 'Button 1', constraints: BorderLayout.SOUTH, actionPerformed: {
-	                slideLayout.show(testPanel, 'button2')
-	            })
+				panel(constraints: BorderLayout.SOUTH) {
+					button(text: 'Button 1', actionPerformed: {
+		                slideLayout.show(testPanel, 'button2')
+		            })
+					button(text: 'Next', actionPerformed: {
+		                slideLayout.next(testPanel)
+		            })
+				}
             }
 			panel(constraints: 'button2') {
 				borderLayout()
 				textArea()
-	            button(text: 'Button 2', constraints: BorderLayout.SOUTH, actionPerformed: {
-	                slideLayout.show(testPanel, 'button1')
-	            })
+				panel(constraints: BorderLayout.SOUTH) {
+					button(text: 'Previous', actionPerformed: {
+		                slideLayout.previous(testPanel)
+		            })
+		            button(text: 'Button 2', actionPerformed: {
+		                slideLayout.show(testPanel, 'button1')
+		            })
+				}
 			}
         }
     }
