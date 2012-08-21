@@ -272,6 +272,28 @@
                     <target>1.6</target>
                 </configuration>
             </plugin>
+
+<plugin>
+<groupId>org.codeartisans</groupId>
+<artifactId>flamingo-maven-plugin</artifactId>
+    <version>1.1</version>
+<executions>
+    <execution>
+    <id>actions</id>
+    <phase>generate-sources</phase>
+    <goals>
+        <goal>transcode</goal>
+    </goals>
+    <configuration>
+        <sourceDirectory>${project.basedir}/etc/svg/icons</sourceDirectory>
+        <outputPackage>org.mnode.ousia.flamingo.icons</outputPackage>
+        <implementsResizableIcon>true</implementsResizableIcon><!-- Defaults to false -->
+        <stopOnFailure>false</stopOnFailure> <!-- Defaults to true -->
+    </configuration>
+    </execution>
+</executions>
+</plugin>
+
             
 			<plugin>
 				<groupId>com.mycila.maven-license-plugin</groupId>
