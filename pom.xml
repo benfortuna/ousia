@@ -273,26 +273,26 @@
                 </configuration>
             </plugin>
 
-<plugin>
-<groupId>org.codeartisans</groupId>
-<artifactId>flamingo-maven-plugin</artifactId>
-    <version>1.1</version>
-<executions>
-    <execution>
-    <id>actions</id>
-    <phase>generate-sources</phase>
-    <goals>
-        <goal>transcode</goal>
-    </goals>
-    <configuration>
-        <sourceDirectory>${project.basedir}/etc/svg/icons</sourceDirectory>
-        <outputPackage>org.mnode.ousia.flamingo.icons</outputPackage>
-        <implementsResizableIcon>true</implementsResizableIcon><!-- Defaults to false -->
-        <stopOnFailure>false</stopOnFailure> <!-- Defaults to true -->
-    </configuration>
-    </execution>
-</executions>
-</plugin>
+			<plugin>
+				<groupId>org.codeartisans</groupId>
+				<artifactId>flamingo-maven-plugin</artifactId>
+				<version>1.2</version>
+				<executions>
+					<execution>
+						<id>actions</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>transcode</goal>
+						</goals>
+						<configuration>
+							<sourceDirectory>${project.basedir}/etc/svg/icons</sourceDirectory>
+							<outputPackage>org.mnode.ousia.flamingo.icons</outputPackage>
+							<implementsResizableIcon>true</implementsResizableIcon><!-- Defaults to false -->
+							<stopOnFailure>false</stopOnFailure> <!-- Defaults to true -->
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 
             
 			<plugin>
@@ -305,6 +305,41 @@
                 <artifactId>codenarc-maven-plugin</artifactId>
             </plugin>
 		</plugins>
+		<pluginManagement>
+			<plugins>
+				<!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>
+											org.codeartisans
+										</groupId>
+										<artifactId>
+											flamingo-maven-plugin
+										</artifactId>
+										<versionRange>
+											[1.1,)
+										</versionRange>
+										<goals>
+											<goal>transcode</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore></ignore>
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
 	</build>
 
 	<properties>
