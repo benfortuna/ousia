@@ -260,6 +260,11 @@
             <type>zip</type>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+        	<groupId>org.spockframework</groupId>
+        	<artifactId>spock-core</artifactId>
+        	<scope>test</scope>
+        </dependency>
 	</dependencies>
 
 	<build>
@@ -299,7 +304,17 @@
 				<groupId>com.mycila.maven-license-plugin</groupId>
 				<artifactId>maven-license-plugin</artifactId>
 			</plugin>
-
+			
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-pmd-plugin</artifactId>
+				<configuration>
+					<excludeRoots>
+						<excludeRoot>target/generated-sources/flamingo</excludeRoot>
+					</excludeRoots>
+				</configuration>
+			</plugin>
+      
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>codenarc-maven-plugin</artifactId>
