@@ -31,20 +31,16 @@
  */
 package org.mnode.ousia
 
-import groovy.lang.Closure
 import groovy.swing.LookAndFeelHelper
 import groovy.swing.SwingBuilder
 import groovy.swing.factory.LayoutFactory
 import groovy.swing.factory.ScrollPaneFactory
-import groovy.swing.factory.SplitPaneFactory
 import groovy.swing.factory.TextArgWidgetFactory
 import groovy.util.logging.Slf4j
 
 import java.awt.Component
 import java.awt.Cursor
 import java.awt.Insets
-import java.util.Locale
-import java.util.Map
 import java.util.prefs.Preferences
 
 import javax.swing.JFrame
@@ -69,10 +65,10 @@ import org.mnode.ousia.flamingo.RibbonApplicationMenuEntryFactory
 import org.mnode.ousia.flamingo.RibbonBandFactory
 import org.mnode.ousia.flamingo.RibbonComponentFactory
 import org.mnode.ousia.flamingo.RibbonTaskFactory
+import org.mnode.ousia.flamingo.SvgIconFactory
 import org.mnode.ousia.glazedlists.FilterListFactory
 import org.mnode.ousia.glazedlists.SortedListFactory
 import org.mnode.ousia.glazedlists.TreeListFactory
-import org.mnode.ousia.tracker.JSplitPaneTracker
 import org.noos.xing.mydoggy.plaf.MyDoggyToolWindowManager
 import org.pushingpixels.flamingo.api.bcb.core.BreadcrumbFileSelector
 import org.pushingpixels.flamingo.api.common.JCommandButton
@@ -188,6 +184,7 @@ class OusiaBuilder extends SwingBuilder {
 	def registerFlamingoComponents() {
 		try {
 			registerFactory 'resizableIcon', new ResizableIconFactory()
+			registerFactory 'svgIcon', new SvgIconFactory()
 			registerFactory 'breadcrumbBar', new BreadcrumbBarFactory()
 			registerBeanFactory 'breadcrumbFileSelector', BreadcrumbFileSelector
 			registerFactory 'commandButtonStrip', new JCommandButtonStripFactory()
