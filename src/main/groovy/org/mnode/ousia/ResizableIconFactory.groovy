@@ -42,6 +42,8 @@ import java.util.Map
 
 import javax.swing.ImageIcon;
 
+import org.pushingpixels.flamingo.api.common.icon.ImageWrapperResizableIcon;
+
 
 /**
  * @author fortuna
@@ -65,7 +67,7 @@ class ResizableIconFactory extends AbstractFactory {
 		Dimension size = attributes.remove('size')
 		// XXX: replace with svg salamander
 //		SvgBatikResizableIcon.getSvgIcon(url, size)
-		new ImageIcon(url)
+		ImageWrapperResizableIcon.getIcon(url, size)
 	}
 
 }
