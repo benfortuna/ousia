@@ -2,7 +2,7 @@
 	<parent>
 		<artifactId>mnode-parent</artifactId>
 		<groupId>org.mnode</groupId>
-		<version>1.15</version>
+		<version>1.17-SNAPSHOT</version>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.mnode.ousia</groupId>
@@ -268,6 +268,22 @@
 	</dependencies>
 
 	<build>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<excludes>
+					<exclude>META-INF/services/org.codehaus.groovy.runtime.ExtensionModule</exclude>
+				</excludes>
+			</resource>
+			<resource>
+				<directory>src/main/resources</directory>
+				<includes>
+					<include>META-INF/services/org.codehaus.groovy.runtime.ExtensionModule</include>
+				</includes>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+
 		<plugins>
             <plugin>
                 <!-- Override to Java 6.. -->

@@ -1,0 +1,3 @@
+moduleName = ousia-module
+moduleVersion = ${project.version}
+extensionClasses = org.mnode.ousia.util.ResourceBundleExtension
